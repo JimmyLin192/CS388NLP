@@ -4,10 +4,10 @@ all:
 	(cd codebases && make) 
 
 tar: 
-	tar -czvf ngram_XL5224.tar.gz codebases/*.java README 
+	tar -czvf ngram_XL5224.gtz codebases/*.java traces/*.txt README report/report.pdf
 
 push:
-	git add *.java Makefile
+	git add *.java Makefile traces
 	git commit
 	git push
 
