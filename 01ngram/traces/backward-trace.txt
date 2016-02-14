@@ -1,0 +1,29 @@
+➜  01ngram git:(master) ✗ java codebases.BackwardBigramModel datasets/atis/atis3.pos 0.1
+# Train Sentences = 519 (# words = 3922)
+# Test Sentences = 58 (# words = 431)
+Training...
+Perplexity = 12.181243053658665
+Word Perplexity = 14.841080234525304
+Testing...
+Perplexity = 40.606994541576164
+Word Perplexity = 55.80171088901374
+
+➜  01ngram git:(master) ✗ java codebases.BackwardBigramModel datasets/wsj 0.1
+# Train Sentences = 43820 (# words = 995626)
+# Test Sentences = 4869 (# words = 111718)
+Training...
+Perplexity = 77.71846700410026
+Word Perplexity = 93.20600614187401
+Testing...
+Perplexity = 249.06585203029883
+Word Perplexity = 313.57838171421514
+
+➜  01ngram git:(master) ✗ java codebases.BackwardBigramModel datasets/brown 0.1
+# Train Sentences = 47207 (# words = 1079440)
+# Test Sentences = 5245 (# words = 93530)
+Training...
+Perplexity = 96.74313351882947
+Word Perplexity = 117.441287433227
+Testing...
+Perplexity = 265.27060256437716
+Word Perplexity = 359.03905627049943

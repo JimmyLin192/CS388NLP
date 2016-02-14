@@ -1,4 +1,4 @@
-package nlp.lm;
+package codebases;
 
 /**
  * A simple wrapper data structure for storing a double 
