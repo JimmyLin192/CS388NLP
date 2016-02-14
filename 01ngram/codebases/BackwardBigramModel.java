@@ -120,18 +120,6 @@ public class BackwardBigramModel extends BigramModel {
         return sentenceLogProb;
     }
 
-    /* Reverse tokens of all sentences */
-    public static List<List<String>> reverse (List<List<String>> sentences) {
-        for (int i = 0; i < sentences.size(); i ++) {
-            Collections.reverse (sentences.get(i));
-            String tmp = sentences.get(i).get(0);
-            int sentenceLength = sentences.get(i).size();
-            sentences.get(i).set(0, sentences.get(i).get(sentenceLength-1));
-            sentences.get(i).set(sentenceLength-1, tmp);
-        }
-        return sentences;
-    }
-
     /** Train and test a backward bigram model.
      *  Command format: "codebases.BackwardBigramModel [DIR]* [TestFrac]" where DIR 
      *  is the name of a file or directory whose LDC POS Tagged files should be 
@@ -150,8 +138,6 @@ public class BackwardBigramModel extends BigramModel {
 	double testFraction = Double.valueOf(args[args.length -1]);
 	// Get list of sentences from the LDC POS tagged input files
 	List<List<String>> sentences = POSTaggedFile.convertToTokenLists(files);
-    // reverse the input 
-    // sentences = reverse(sentences);
 	int numSentences = sentences.size();
 	// Compute number of test sentences based on TestFrac
 	int numTest = (int)Math.round(numSentences * testFraction);
