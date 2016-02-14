@@ -4,13 +4,13 @@ import java.io.*;
 import java.util.*;
 
 /** 
- * @author Ray Mooney
+ * @author Xin Lin (xl5224, jimmylin@utexas.edu)
  * A simple bigram language model that uses simple fixed-weight interpolation
  * with a unigram model for smoothing.
 */
 
 public class BackwardBigramModel extends BigramModel {
-    /* Reverse sentences of  */
+    /* Reverse tokens of all sentences */
     public static List<List<String>> reverse (List<List<String>> sentences) {
         for (int i = 0; i < sentences.size(); i ++) {
             Collections.reverse (sentences.get(i));
@@ -22,8 +22,8 @@ public class BackwardBigramModel extends BigramModel {
         return sentences;
     }
 
-    /** Train and test a bigram model.
-     *  Command format: "nlp.lm.BigramModel [DIR]* [TestFrac]" where DIR 
+    /** Train and test a backward bigram model.
+     *  Command format: "codebases.BackwardBigramModel [DIR]* [TestFrac]" where DIR 
      *  is the name of a file or directory whose LDC POS Tagged files should be 
      *  used for input data; and TestFrac is the fraction of the sentences
      *  in this data that should be used for testing, the rest for training.

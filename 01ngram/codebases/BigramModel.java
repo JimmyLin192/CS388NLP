@@ -180,26 +180,26 @@ public class BigramModel {
 
     /** Use sentences as a test set to evaluate the model. Print out perplexity
      *  of the model for this test data */
-    public void test (List<List<String>> sentences) {
-	// Compute log probability of sentence to avoid underflow
-	double totalLogProb = 0;
-	// Keep count of total number of tokens predicted
-	double totalNumTokens = 0;
-	// Accumulate log prob of all test sentences
-	for (List<String> sentence : sentences) {
-	    // Num of tokens in sentence plus 1 for predicting </S>
-	    totalNumTokens += sentence.size() + 1;
-	    // Compute log prob of sentence
-	    double sentenceLogProb = sentenceLogProb(sentence);
-	    //	    System.out.println(sentenceLogProb + " : " + sentence);
-	    // Add to total log prob (since add logs to multiply probs)
-	    totalLogProb += sentenceLogProb;
-	}
-	// Given log prob compute perplexity
-	double perplexity = Math.exp(-totalLogProb / totalNumTokens);
-	System.out.println("Perplexity = " + perplexity );
-    }
-    
+  public void test (List<List<String>> sentences) {
+      // Compute log probability of sentence to avoid underflow
+      double totalLogProb = 0;
+      // Keep count of total number of tokens predicted
+      double totalNumTokens = 0;
+      // Accumulate log prob of all test sentences
+      for (List<String> sentence : sentences) {
+          // Num of tokens in sentence plus 1 for predicting </S>
+          totalNumTokens += sentence.size() + 1;
+          // Compute log prob of sentence
+          double sentenceLogProb = sentenceLogProb(sentence);
+          //	    System.out.println(sentenceLogProb + " : " + sentence);
+          // Add to total log prob (since add logs to multiply probs)
+          totalLogProb += sentenceLogProb;
+      }
+      // Given log prob compute perplexity
+      double perplexity = Math.exp(-totalLogProb / totalNumTokens);
+      System.out.println("Perplexity = " + perplexity );
+  }
+
     /* Compute log probability of sentence given current model */
     public double sentenceLogProb (List<String> sentence) {
 	// Set start-sentence as initial token
