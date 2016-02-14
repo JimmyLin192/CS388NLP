@@ -1,23 +1,23 @@
-➜  01ngram git:(master) ✗ java codebases.BidirectionalBigramModel datasets/atis/atis3.pos 0.1
+➜  01ngram git:(master) ✗ java codebases.BidirectionalBigramModel datasets/atis 0.1
 # Train Sentences = 519 (# words = 3922)
 # Test Sentences = 58 (# words = 431)
 Training...
-Word Perplexity = 18.451298558876495
+Word Perplexity = 9.373781129308176
 Testing...
-Word Perplexity = 38.64410475589202
+Word Perplexity = 17.54759815076752
 
-➜  01ngram git:(master) ✗ java codebases.BidirectionalBigramModel datasets/wsj/* 0.1
+➜  01ngram git:(master) ✗ java codebases.BidirectionalBigramModel datasets/wsj 0.1
 # Train Sentences = 43820 (# words = 995626)
 # Test Sentences = 4869 (# words = 111718)
 Training...
-Word Perplexity = 158.00065565555565
+Word Perplexity = 48.60324006179863
 Testing...
-Word Perplexity = 402.101268068311
+Word Perplexity = 130.48485776511572
 
-➜  01ngram git:(master) ✗ java codebases.BidirectionalBigramModel datasets/brown/* 0.1
+➜  01ngram git:(master) ✗ java codebases.BidirectionalBigramModel datasets/brown 0.1
 # Train Sentences = 47207 (# words = 1079440)
 # Test Sentences = 5245 (# words = 93530)
 Training...
-Word Perplexity = 193.06998111455255
+Word Perplexity = 63.74044711732543
 Testing...
-Word Perplexity = 418.76521806444157
+Word Perplexity = 172.75802167494822

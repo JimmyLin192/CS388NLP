@@ -16,8 +16,8 @@ public class BidirectionalBigramModel extends BigramModel {
 
     public BidirectionalBigramModel () {
         // even interpolation between forward and backward model
-        this.lambda1 = 1.0;
-        this.lambda2 = 0;
+        this.lambda1 = 0.5;
+        this.lambda2 = 0.5;
         // initialize forward and backward model
         this.forwardModel = new BigramModel();
         this.backwardModel = new BackwardBigramModel();

@@ -1,7 +1,10 @@
 CC=javac
 
 all:
-	$(CC) *.java 
+	(cd codebases && make) 
+
+tar: 
+	tar -czvf codebases.tar.gz codebases/*.java
 
 push:
 	git add *.java Makefile
