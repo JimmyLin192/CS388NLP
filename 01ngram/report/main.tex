@@ -1,0 +1,199 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%  THIS TEX FILE IS TO GENERATE PDF FILE FOR 
+%%% 
+%%%  COPYRIGHT (C) JIMMY LIN, 2013, UT AUSTIN
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\documentclass[11pt,a4paper]{article}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%  PACKAGES USED IN THIS TEX SOURCE FILE
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{geometry,amsthm,amsmath,graphicx,fancyheadings,amsfonts}
+\usepackage{amssymb}
+\usepackage{tocloft}
+\usepackage{enumitem}
+\usepackage[colorlinks,
+            linkcolor=blue,
+            anchorcolor=red,
+            citecolor=green
+            ]{hyperref}
+% for my mac
+\IfFileExists{/Users/JimmyLin/.latex/UTA_CS/JS.sty}{ 
+    \usepackage{/Users/JimmyLin/.latex/UTA_CS/JS}
+    \usepackage{/Users/JimmyLin/.latex/UTA_CS/JSASGN}
+}{} 
+% for UT's linux machine
+\IfFileExists{/u/jimmylin/workspace/Configs/latex/UTA_CS/JS.sty}{
+    \usepackage{/u/jimmylin/.latex/UTA_CS/JS} 
+    \usepackage{/u/jimmylin/.latex/UTA_CS/JSASGN}
+}{} 
+\DeclareMathOperator*{\median}{median}
+\DeclareMathOperator*{\mean}{mean}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% MACROS CONTAINING THE FILE INFORMATION
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\renewcommand{\COURSE}{CS388 Natural Language Processing}
+\renewcommand{\LECTURER}{Prof. Raymond J. Mooney}
+\renewcommand{\SECTION}{51360}
+\renewcommand{\TASK}{Programming Assignment 01}
+\renewcommand{\RELEASEDATE}{Feb. 01 2016}
+\renewcommand{\DUEDATE}{Feb. 18 2016}
+\renewcommand{\TIMECONSUME}{10 hours}
+
+\setlength{\cftsecnumwidth}{6.3em}
+\renewcommand{\thesection}{\arabic{section}.}
+\renewcommand{\thesubsection}{\arabic{section}.\arabic{subsection}}
+\renewcommand{\contentsname}{List of Problems}
+\newcommand{\E}[1]{\ensuremath{\mathbb{E}[#1]}}
+\renewcommand{\Pr}[1]{\ensuremath{\mathbf{Pr}[#1]}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% DOCUMENTATION STARTS FROM HERE 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% TITLE PAGE
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{titlepage}
+    \maketitle
+\end{titlepage}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% CONTENT PAGE: TABLEOFCONTENTS, LISTOFTABLES, LIST OF FIGURES
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%\begin{center} 
+%    \tableofcontents  
+%    %\listoftables 
+%    %\listoffigures
+%\end{center}
+%\newpage
+\parindent 0in
+\parskip 1.5ex
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% GENERAL DOCUMENTATION BEGINS 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{section}{Introduction}
+    In this experiment, we will examine the predictive powers of Bigram
+    models of various flavors. They are respectively Forward Bigram Model,
+    Backward Bigram Model, and Bidirectional Bigram Model. 
+
+    Forward Bigram Model (FBM) is a language generation model based on a natural
+    linguistic production methodology (left-to-right context). 
+    Differing from FBM, a Backward Bigram Model (BBM) is opposite to the
+    natural way of generates language, which in terms of right-to-left
+    context. Both FBM and BBM will take advantage of smoothing techniques
+    through combining the probability estimates of Unigram and Bigram models. 
+    The smoothing ratios for both FBM and BBM are fixed at $0.1$ and $0.9$.
+    The Bidirectional Bigram Model (BiBM) can be seen as a sort of combination
+    of FBM and BBM. Its decision of certain token at a particular position
+    comes from the probability interporlated from that of FBM and BBM.
+    
+    The experimented datasets are \textit{atis, wsj, brown}, all of which are
+    sourced from Linguistic Data Consortium (LDC)'s Penn Treebank collection. 
+    By default, every dataset will be split into training set and testing set
+    with a ratio of $9:1$. That is, nine of ten sentences will be used for
+    training Bigram Models and the leftover one will be employed for
+    performance evaluation. For the fairness of the comparisons, the training
+    set and testing set are the same for all models. 
+
+\end{section}
+
+\begin{section}{Comparative Results}
+    Comparisons of word perplexity between various Bigram Models
+    can be found at Table \ref{wptable}.  
+
+    \begin{table}[h] \centering
+        \caption{Word Perplexity Comparisons between Various Bigram Models}
+        \label{wptable}
+        \begin{tabular}{|c||c|c||c|c||c|c|}
+            \hline
+            Datasets  & \multicolumn{2}{|c||}{atis} & \multicolumn{2}{|c||}{wsj} & 
+            \multicolumn{2}{|c|}{brown} \\ \hline
+            Bigram Models  & training & testing & training & testing  &training & testing  \\ \hline
+  Forward & 10.59 & 24.05 & 88.89 & 275.12 & 113.36  & 310.67 \\
+  Backward & 9.11 & 21.71 & 71.04 & 205.75 & 89.30 & 218.79 \\
+  Bidirectional & 9.37 &  17.54 & 48.60 & 130.48 & 63.74 & 172.75 \\
+            \hline
+        \end{tabular}
+    \end{table}
+
+    Note that the Bidirectional Model employs even interporlation from Forward
+    Model and Backward Model in the normal probability space (not log
+    probability space).
+
+    From the Table \ref{wptable}, it can be observed that Backward Model and
+    Bidirectional Model reach lower word perplexity (which is better) than
+    Forward Model in any training/testing set derived from three
+    experimental datasets. 
+    Furthermore, Bidirectional Model outperforms Forward Model in any
+    scenario except the case of the training set from atis. This could be
+    out of the overfitting phenomenon.
+
+\end{section}
+
+
+\begin{section}{Discussions}
+    In this section, we are intended to respond to questions of minimal
+    requirements.
+
+    (a) How does the "Word Perplexity" of the backward bigram model (for both
+    training and test data) compare to the normal model? Discuss the reasons
+    for any diferences or similarities found.
+    \paragraph{Backward v.s. Forward} In all scenarios, Backward Bigram Model
+    outperforms Forward Bigram Models. This evidence could serve as a powerful
+    support for the idea that the backward (right-to-left) linguistic
+    generation modelling can better explain the natural language generation
+    process. If \textit{Bidirectional v.s. Backward} is not considered, no
+    indicator reveals the existence of overfitting for Backward Bigram Model
+    according to the presented word perplexity value for training and testing
+    sets.
+
+    \newpage
+    (b) How does the "Word Perplexity" of the bidirectional model (for both
+    training and test data) compare to both the backward model and the normal
+    model? Discuss the reasons for any diferences or similarities found.
+    \paragraph{Bidirectional v.s. Forward} Bidirectional Bigram Model gets
+    lower word perplexity values than Forward Bigram Models in all ways. This
+    shows that Bidirectional Bigram Model can also serve as a strong modelling
+    for the natural language generation process. 
+
+    \paragraph{Bidirectional v.s. Backward} This pair of comparison is more
+    interesting. As we can see from Table \ref{wptable}, the bidirectional
+    modelling works better than Backward modelling except the training set of
+    atis. This phenomenon can be explained by the overfitting theory: Backward
+    method overfits the training set of atis, such that it works relatively
+    worse in atis' testing set. The good thing is Bidirectional Bigram Model
+    successfully escape from just-so-so decision of BBM and proposes a better
+    explanation for testing sentences.
+
+\end{section}
+
+\begin{section}{Critical/Practical Issues}
+    In this section, we discuss a few practical issues that we might suffer
+    from in the experiments. 
+\paragraph{Shuffling}
+We are supposed to shuffle each experimental dataset before
+spliting it into training set and testing set. This is because a
+training/testing split without shuffling might cause the sentences of
+different styles unevenly distributed to training and testing set and thus
+makes comparison between techniques undistinguishable. 
+But in this asignment, the reported results above are not preprocessed with
+shuffling for the purpose of comparing ours to others' implementation in a
+more fair way. That is, we assume that the provided corpus have been shuffled
+in advance.
+\end{section}
+\paragraph{Parameter Tuning} Although both backward method and bidirectional
+method derives better results under experimented settings, it is still hard to
+conclude that backward and bidirectional methods are more powerful than the
+forward method. It is possible that the forward model could reach the lowest
+word perplexity over all other models in some particular contexts (e.g.
+training/testing split, unigram-bigram interpolation). Thus, without a more
+comprehensive experiments, it is unreasonable to conclude that the FBM is less
+powerful thant BBM and BiBM. But at least, we can say that \textit{under
+    the experimented/common settings}, Bidirectional Bigram Models with even
+interporlation outperforms Forward Bigram Model and Backward Bigram Model.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% General Documentation ends
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{document}
