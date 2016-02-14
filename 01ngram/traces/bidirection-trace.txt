@@ -6,3 +6,18 @@ Word Perplexity = 18.451298558876495
 Testing...
 Word Perplexity = 38.64410475589202
 
+➜  01ngram git:(master) ✗ java codebases.BidirectionalBigramModel datasets/wsj/* 0.1
+# Train Sentences = 43820 (# words = 995626)
+# Test Sentences = 4869 (# words = 111718)
+Training...
+Word Perplexity = 158.00065565555565
+Testing...
+Word Perplexity = 402.101268068311
+
+➜  01ngram git:(master) ✗ java codebases.BidirectionalBigramModel datasets/brown/* 0.1
+# Train Sentences = 47207 (# words = 1079440)
+# Test Sentences = 5245 (# words = 93530)
+Training...
+Word Perplexity = 193.06998111455255
+Testing...
+Word Perplexity = 418.76521806444157
