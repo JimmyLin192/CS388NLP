@@ -16,8 +16,8 @@ public class BidirectionalBigramModel extends BigramModel {
 
     public BidirectionalBigramModel () {
         // even interpolation between forward and backward model
-        this.lambda1 = 0.5;
-        this.lambda2 = 0.5;
+        this.lambda1 = 1.0;
+        this.lambda2 = 0;
         // initialize forward and backward model
         this.forwardModel = new BigramModel();
         this.backwardModel = new BackwardBigramModel();
@@ -41,20 +41,17 @@ public class BidirectionalBigramModel extends BigramModel {
         int nToken = sentence.size(); // end-of-sentence exclusive
         for (int i = 0; i < nToken;  i++) {
             String token = sentence.get(i);
-            // NOTE THAT backward model is a forward model with reverse
-            // processing order and <S>-</S> swap: 
-            //    forward:    <S> I love you </S>
-            //    backward:   <S> you love I </S>
-            // So both forward and backward processing is one-sided 
-            String nextToken = (i<nToken-1)?sentence.get(i+1):"<S>";
+            String nextToken = (i<nToken-1)?sentence.get(i+1):"</S>";
             // compute probability in forward model
             DoubleValue f1g = forwardModel.unigramMap.get(token);
             if (f1g == null) {
                 token = "<UNK>";
                 f1g = forwardModel.unigramMap.get(token);
             }
-            DoubleValue f2g = forwardModel.bigramMap.get(bigram(prevToken,token));
+            String bigram = bigram(prevToken,token);
+            DoubleValue f2g = forwardModel.bigramMap.get(bigram);
             double forwardVal = forwardModel.interpolatedProb(f1g, f2g);
+            // System.out.println(forwardVal);
             // compute probability in backward model
             DoubleValue b1g = backwardModel.unigramMap.get(token);
             if (b1g == null) {
@@ -63,15 +60,16 @@ public class BidirectionalBigramModel extends BigramModel {
             }
             DoubleValue b2g = backwardModel.bigramMap.get(bigram(nextToken,token));
             double backwardVal = backwardModel.interpolatedProb(b1g, b2g);
+            // System.out.println(backwardVal);
             // compute interpolated probability 
-            sentenceLogProb += Math.log(interpolatedProb(forwardVal, backwardVal));
+            sentenceLogProb += Math.log(this.interpolatedProb(forwardVal, backwardVal));
             prevToken = token;
         }
         return sentenceLogProb;
     }
 
     /** Train and test a bidirectional bigram model.
-     *  Command format: "nlp.lm.BigramModel [DIR]* [TestFrac]" where DIR 
+     *  Command format: "codebases/BidirectionalBigramModel [DIR]* [TestFrac]" where DIR 
      *  is the name of a file or directory whose LDC POS Tagged files should be 
      *  used for input data; and TestFrac is the fraction of the sentences
      *  in this data that should be used for testing, the rest for training.
