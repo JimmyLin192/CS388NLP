@@ -1,0 +1,40 @@
+CS388 Natural Language Processing HW01 README File
+
+I. Student Information
+    Name: Xin Lin
+    EID: XL5224
+    Email: jimmylin@utexas.edu 
+
+II. Submission Directory
+
+    *  README.txt   instruction manual
+    *  report.pdf   my 2-page report answering to discussion question
+    *  codebases/   all java programs about ngram model
+    *  traces/      Trace files for backward and bidirectional models
+
+III. Instruction of Compilation
+
+    Compiling my program is easy. 
+    Simply extract the compressed file to ngram_XL5224 folder, and then enter
+    that directory with
+
+        cd ngram_XL5224 
+
+    And then compile all java file with 
+
+        make
+
+IV. Instruction of Running Programs
+
+    (i) Backward N-Gram Model
+
+    Execute the following command under ngram_XL5224 directory
+
+        java codebases.BackwardBigramModel [Dataset_Directory] [test_fraction]
+    
+    (ii) Bidirectional N-Gram Model
+
+    Execute the following command under ngram_XL5224 directory
+
+        java codebases.BidirectionalBigramModel [Dataset_Directory] [test_fraction]
+
