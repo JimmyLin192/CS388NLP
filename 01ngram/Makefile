@@ -4,7 +4,7 @@ all:
 	(cd codebases && make) 
 
 tar: 
-	tar -czvf ngram_XL5224.gtz codebases/*.java traces/*.txt README report/report.pdf
+	zip ngram_XL5224.tgz codebases/*.java codebases/Makefile traces/*.txt README report.pdf Makefile
 
 push:
 	git add *.java Makefile traces
