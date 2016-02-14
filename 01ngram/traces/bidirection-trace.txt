@@ -1,1 +1,8 @@
-2
+➜  01ngram git:(master) ✗ java codebases.BidirectionalBigramModel datasets/atis/atis3.pos 0.1
+# Train Sentences = 519 (# words = 3922)
+# Test Sentences = 58 (# words = 431)
+Training...
+Word Perplexity = 18.451298558876495
+Testing...
+Word Perplexity = 38.64410475589202
+
