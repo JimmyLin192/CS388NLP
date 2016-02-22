@@ -25,6 +25,24 @@ endif
 all: class link-resources
 	$(JAVAC) $(JAVA_FLAGS) `find src -name '*.java'`
 
+tar: 
+	tar czvf XL5224_02POS.tar.gz  preprocess.py traces/* README  
+
+CRF: 
+	java -cp "class:lib/mallet-deps.jar" cc.mallet.fst.SimpleTagger \
+	--train true --model-file atis3.CRF.model \
+	--training-proportion 0.8 --random-seed 5 \
+	--test lab datasets/atis3.mal 2> atis3.CRF.log
+
+HMM:
+	java -cp "class:lib/mallet-deps.jar" cc.mallet.fst.HMMSimpleTagger \
+	--train true --model-file atis3.HMM.model \
+	--training-proportion 0.8 \
+	--test lab datasets/atis3.mal 2> atis3.HMM.log 
+
+rm: 
+	rm -rf *.log *.model
+
 javadoc: html class
 	$(JAVADOC) $(JAVADOC_FLAGS) -classpath "$(MALLET_DIR)/class:$(MALLET_DIR)/lib/mallet-deps.jar:$(MALLET_DIR)/lib/grmm-deps.jar" -d $(MALLET_DIR)/html -sourcepath $(MALLET_DIR)/src -source 1.4 -subpackages edu
 
