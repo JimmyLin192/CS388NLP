@@ -32,6 +32,7 @@ public class TokenAccuracyEvaluator extends TransducerEvaluator
 	private static Logger logger = MalletLogger.getLogger(TokenAccuracyEvaluator.class.getName());
 
 	private HashMap<String,Double> accuracy = new HashMap<String,Double>();
+	private HashMap<String,int> vocabularies = new HashMap<String,int>();
 
 	public TokenAccuracyEvaluator (InstanceList[] instanceLists, String[] descriptions) {
 		super (instanceLists, descriptions);
@@ -56,6 +57,8 @@ public class TokenAccuracyEvaluator extends TransducerEvaluator
   {
 		int numCorrectTokens;
 		int totalTokens;
+        int numCorrectOOVTokens;
+        int totalOOVTokens;
 
 		Transducer transducer = trainer.getTransducer();
 		totalTokens = numCorrectTokens = 0;
@@ -70,15 +73,30 @@ public class TokenAccuracyEvaluator extends TransducerEvaluator
 
 			for (int j = 0; j < trueOutput.size(); j++) {
 				totalTokens++;
-				if (trueOutput.get(j).equals(predOutput.get(j)))
+                // for Out-of-vocabulary accounting
+                if (description.equals("Training")) {
+                    vocabularies.add(trueOutput.get(j));
+                } else if (description.equals("Testing")) {
+                    if (!vocabularies.contains(trueOutput.get(j))) totalOOVTokens ++;
+                } else {
+                    assert(false);
+                }
+				if (trueOutput.get(j).equals(predOutput.get(j))) {
 					numCorrectTokens++;
+                    if (description.equals("Testing")) {
+                        if (!vocabularies.contains(trueOutput.get(j))) numCorrectOOVTokens ++;
+                    }
+                }
 			}
 			//System.err.println ("TokenAccuracyEvaluator "+i+" numCorrectTokens="+numCorrectTokens+" totalTokens="+totalTokens+" accuracy="+((double)numCorrectTokens)/totalTokens);
 		}
 		double acc = ((double)numCorrectTokens)/totalTokens;
+        double OOVacc = ((double)numCorrectOOVTokens)/totalOOVTokens;
 		//System.err.println ("TokenAccuracyEvaluator accuracy="+acc);
 		accuracy.put(description, acc);
+        accuracy.put(description+"OOV", OOVacc)
 		logger.info (description +" accuracy="+acc);
+		logger.info (description +" OOVaccuracy="+OOVacc);
 	}
 
 	/**
