@@ -81,6 +81,7 @@ public class TokenAccuracyEvaluator extends TransducerEvaluator
 		logger.info (description +" accuracy="+acc);
 	}
 
+    
 	/**
 	 * Returns the accuracy from the last time test() or evaluate() was called
 	 * @return
