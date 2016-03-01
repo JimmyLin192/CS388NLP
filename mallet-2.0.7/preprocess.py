@@ -15,9 +15,51 @@ import sys, os
 def usage (): 
     print "This program converts raw POS format file to mallet input data file. "
     print "Usage: "
-    print "\tpython preprocess.py [pos_file(directory)] [mallet_file]"
+    print "\tpython preprocess.py [OrthOption] [pos_file(directory)] [mallet_file]"
 
-def preprocess (posFileName, malFileName, Option): 
+def checkCaps (word): 
+    if len(word) < 1: return False
+    else: return word[-1].isupper();
+
+def checkSuffix (word):
+    if len(word) < 1: return False
+    elif word[-1] == 's': return True
+    elif len(word) < 3: return False
+    return word[-3:] == 'ing'
+
+def checkHyphen (word):
+    if len(word) == 0: return False
+    return '-' in word or word[0].isdigit()
+
+'''
+    OrthOption: 
+        -simple: No orthographic feature considered
+        -suffix: -s and -ing
+        -caps: only capitalization feature
+        -hyphen: consider hyphen and head-position number
+        -all: consider all feature stated above
+'''
+def towrite (pair, OrthOption):
+    values = pair.split(" ")
+    word = values[0]
+    tag = values[1]
+    if OrthOption == "-simple": pass
+    elif OrthOption == "-suffix":
+        if checkSuffix(word): return word + " suffix " + tag
+    elif OrthOption == "-caps":
+        if checkCaps(word): return word + " caps " + tag
+    elif OrthOption == "-hyphen":
+        if checkHyphen(word): return word + " hyphen " + tag
+    elif OrthOption == "-all":
+        result = [word]
+        if checkSuffix(word): result.append("suffix")
+        if checkCaps(word): result.append("caps")
+        if checkHyphen(word): result.append("hyphen")
+        result.append(tag)
+        return " ".join(result)
+    return word + " " + tag
+
+def preprocess (posFileName, malFileName, Option, OrthOption): 
     print "processing:", posFileName
     fout = open(malFileName, Option)
     fin = open(posFileName, "r")
@@ -31,10 +73,11 @@ def preprocess (posFileName, malFileName, Option):
         line = line.strip("\n")
         line = line.strip(" [")
         line = line.strip(" ]")
+        line = line.replace("  ", " ")
         pairs = line.split(' ')
         for p in pairs: 
             p = p.replace('/', ' ')
-            fout.write(p)
+            fout.write(towrite(p,OrthOption))
             fout.write('\n')
     fout.write('\n')
     fin.close()
@@ -42,22 +85,23 @@ def preprocess (posFileName, malFileName, Option):
     print "Done."
 
 def main ():
-    if len(sys.argv) != 3: 
+    if len(sys.argv) != 4: 
         usage()
         sys.exit(1)
-    posFileName = sys.argv[1]
-    malFileName = sys.argv[2]
+    OrthOption = sys.argv[1]
+    posFileName = sys.argv[2]
+    malFileName = sys.argv[3]
 
     # initialize an empty file (cleanup if already exist)
-    os.remove(malFileName)
+    if os.path.exists(malFileName): os.remove(malFileName)
     if not os.path.isdir(posFileName): # posFileName is a file
-        preprocess (posFileName, malFileName, "w+")
+        preprocess (posFileName, malFileName, "w+", OrthOption)
     else:  # posFileName is a directory
         for subdir, dirs, files in os.walk(posFileName):
             for file in files:
                 fileToDo = os.path.join(subdir, file)
                 if fileToDo.endswith(".pos"):
-                    preprocess (fileToDo, malFileName, "a+")
+                    preprocess (fileToDo, malFileName, "a+", OrthOption)
 
 if __name__ == '__main__':
     main()
