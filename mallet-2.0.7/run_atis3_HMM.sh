@@ -5,5 +5,5 @@ for i in `seq 1 10`; do
         --train true --model-file atis3.HMM/$i.model \
         --training-proportion 0.8 \
         --random-seed $i \
-        --test lab ../02POS/datasets/atis3.mal 2> atis3.HMM/$i.log ) &
+        --test lab datasets/atis3.mal 2> atis3.HMM/$i.log ) &
 	done
