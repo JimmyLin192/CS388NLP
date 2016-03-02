@@ -14,11 +14,11 @@
 
 package cc.mallet.util;
 
+
 import java.util.*;
 
-public class Randoms extends java.util.Random {
 
-	public static final double ONE_OVER_E = Math.exp(-1);
+public class Randoms extends java.util.Random {
 
 	public Randoms (int seed) {
 		super(seed);
@@ -205,7 +205,7 @@ public class Randoms extends java.util.Random {
 			double b,p;
 			boolean flag = false;
 
-			b = 1 + alpha * ONE_OVER_E;
+			b = 1 + alpha * Math.exp(-1);
 
 			while (!flag) {
 				p = b * nextUniform();

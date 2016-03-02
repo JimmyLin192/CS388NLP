@@ -262,6 +262,7 @@ public class SimpleLDA implements Serializable {
 	
 	public double modelLogLikelihood() {
 		double logLikelihood = 0.0;
+		int nonZeroTopics;
 
 		// The likelihood of the model is a combination of a 
 		// Dirichlet-multinomial for the words in each topic
@@ -313,7 +314,8 @@ public class SimpleLDA implements Serializable {
 
 		// And the topics
 
-		double logGammaBeta = Dirichlet.logGamma(beta);
+		// Count the number of type-topic pairs
+		int nonZeroTypeTopics = 0;
 
 		for (int type=0; type < numTypes; type++) {
 			// reuse this array as a pointer
@@ -323,8 +325,8 @@ public class SimpleLDA implements Serializable {
 			for (int topic = 0; topic < numTopics; topic++) {
 				if (topicCounts[topic] == 0) { continue; }
 				
-				logLikelihood += Dirichlet.logGamma(beta + topicCounts[topic]) -
-					logGammaBeta;
+				nonZeroTypeTopics++;
+				logLikelihood += Dirichlet.logGamma(beta + topicCounts[topic]);
 
 				if (Double.isNaN(logLikelihood)) {
 					System.out.println(topicCounts[topic]);
@@ -335,7 +337,7 @@ public class SimpleLDA implements Serializable {
 	
 		for (int topic=0; topic < numTopics; topic++) {
 			logLikelihood -= 
-				Dirichlet.logGamma( (beta * numTypes) +
+				Dirichlet.logGamma( (beta * numTopics) +
 											tokensPerTopic[ topic ] );
 			if (Double.isNaN(logLikelihood)) {
 				System.out.println("after topic " + topic + " " + tokensPerTopic[ topic ]);
@@ -345,7 +347,8 @@ public class SimpleLDA implements Serializable {
 		}
 	
 		logLikelihood += 
-			numTopics * Dirichlet.logGamma(beta * numTypes);
+			(Dirichlet.logGamma(beta * numTopics)) -
+			(Dirichlet.logGamma(beta) * nonZeroTypeTopics);
 
 		if (Double.isNaN(logLikelihood)) {
 			System.out.println("at the end");

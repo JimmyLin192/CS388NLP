@@ -20,39 +20,36 @@ package cc.mallet.types;
  *     Arrays.sort(sortedIDs);
  *     
  *     for (int i=0; i&lt;10; i++) {
- *       // do something with the nth highest weighted item
- *     }
  *   </pre></code>
  *
  *    @author David Mimno
  */
 
-public class IDSorter implements Comparable<IDSorter> {
+public class IDSorter implements Comparable {
     int id; double p;
     public IDSorter (int id, double p) { this.id = id; this.p = p; }
     public IDSorter (int id, int p) { this.id = id; this.p = p; }
 
-    public final int compareTo (IDSorter o2) {
+    public final int compareTo (Object o2) {
 
-		double otherP = o2.p;
+		double otherP = ((IDSorter) o2).p;
 
-		if (p > o2.p) {
+		if (p > ((IDSorter) o2).p) {
 			return -1;
 		}
-		else if (p < o2.p) {
+		else if (p < ((IDSorter) o2).p) {
 			return 1;
 		}
 
 		// p == otherP, sort by ID
 		
-		int otherID = o2.id;
+		int otherID = ((IDSorter) o2).id;
 		
 		if (id > otherID) { return -1; }
 		else if (id < otherID) { return 1; }
 				 
 		return 0;
 	}
-	
 	public int getID() {return id;}
 	public double getWeight() {return p;}
 

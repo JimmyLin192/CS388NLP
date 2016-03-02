@@ -395,10 +395,13 @@ Bernoulli numbers. */
 			0.02380952 * oneOverZSquared * oneOverZSquared * oneOverZSquared * oneOverZ -
 			0.03333333 * oneOverZSquared * oneOverZSquared * oneOverZSquared * oneOverZSquared * oneOverZ;
 			
+		System.out.println(z + " -> " + result);
+		
 		while (shift > 0) {
 			shift--;
 			z--;
 			result += 1.0 / (z * z);
+			System.out.println(z + " -> " + result);
 		}
 
 		return result;
@@ -645,13 +648,11 @@ Bernoulli numbers. */
 				}
 
 				// Bayesian estimation part II
-				parameters[k] = oldParametersK * (parameters[k] + shape) / denominator;
+				parameters[k] = (oldParametersK * parameters[k] + shape) / denominator;
 
 				parametersSum += parameters[k];
 			}
 		}
-
-		if (parametersSum < 0.0) { throw new RuntimeException("sum: " + parametersSum); }
 
 		return parametersSum;
 	}

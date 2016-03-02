@@ -2227,259 +2227,259 @@ CRF finished one iteration of maximizer, i=0
 Evaluator iteration=1 cost=NA (not Optimizable.ByValue)
 Training accuracy=0.4138817480719794
 Testing accuracy=0.3755868544600939
-Testing OOVaccuracy=0.3755868544600939
+Testing OOVaccuracy=0.13793103448275862
 CRF about to train with 1 iterations
 getValue() (loglikelihood, optimizable by label likelihood) = -6070.105758848735
 CRF finished one iteration of maximizer, i=0
 Evaluator iteration=2 cost=NA (not Optimizable.ByValue)
 Training accuracy=0.5061411025421308
 Testing accuracy=0.48708920187793425
-Testing OOVaccuracy=0.48708920187793425
+Testing OOVaccuracy=0.034482758620689655
 CRF about to train with 1 iterations
 getValue() (loglikelihood, optimizable by label likelihood) = -5778.469593000763
 CRF finished one iteration of maximizer, i=0
 Evaluator iteration=3 cost=NA (not Optimizable.ByValue)
 Training accuracy=0.5027135104255926
 Testing accuracy=0.4495305164319249
-Testing OOVaccuracy=0.4495305164319249
+Testing OOVaccuracy=0.10344827586206896
 CRF about to train with 1 iterations
 getValue() (loglikelihood, optimizable by label likelihood) = -4618.793565854286
 CRF finished one iteration of maximizer, i=0
 Evaluator iteration=4 cost=NA (not Optimizable.ByValue)
 Training accuracy=0.5792630676949443
 Testing accuracy=0.5692488262910798
-Testing OOVaccuracy=0.5692488262910798
+Testing OOVaccuracy=0.13793103448275862
 CRF about to train with 1 iterations
 getValue() (loglikelihood, optimizable by label likelihood) = -4037.829646698953
 CRF finished one iteration of maximizer, i=0
 Evaluator iteration=5 cost=NA (not Optimizable.ByValue)
 Training accuracy=0.6281062553556127
 Testing accuracy=0.613849765258216
-Testing OOVaccuracy=0.613849765258216
+Testing OOVaccuracy=0.13793103448275862
 CRF about to train with 1 iterations
 getValue() (loglikelihood, optimizable by label likelihood) = -3498.3344552073268
 CRF finished one iteration of maximizer, i=0
 Evaluator iteration=6 cost=NA (not Optimizable.ByValue)
 Training accuracy=0.6403884604398743
 Testing accuracy=0.6208920187793427
-Testing OOVaccuracy=0.6208920187793427
+Testing OOVaccuracy=0.06896551724137931
 CRF about to train with 1 iterations
 getValue() (loglikelihood, optimizable by label likelihood) = -2966.1829723418327
 CRF finished one iteration of maximizer, i=0
 Evaluator iteration=7 cost=NA (not Optimizable.ByValue)
 Training accuracy=0.7432162239360183
 Testing accuracy=0.7089201877934272
-Testing OOVaccuracy=0.7089201877934272
+Testing OOVaccuracy=0.10344827586206896
 CRF about to train with 1 iterations
 getValue() (loglikelihood, optimizable by label likelihood) = -2587.032787190231
 CRF finished one iteration of maximizer, i=0
 Evaluator iteration=8 cost=NA (not Optimizable.ByValue)
 Training accuracy=0.794344473007712
 Testing accuracy=0.7453051643192489
-Testing OOVaccuracy=0.7453051643192489
+Testing OOVaccuracy=0.1724137931034483
 CRF about to train with 1 iterations
 getValue() (loglikelihood, optimizable by label likelihood) = -2288.2760107941103
 CRF finished one iteration of maximizer, i=0
 Evaluator iteration=9 cost=NA (not Optimizable.ByValue)
 Training accuracy=0.808626106826621
 Testing accuracy=0.7687793427230047
-Testing OOVaccuracy=0.7687793427230047
+Testing OOVaccuracy=0.20689655172413793
 CRF about to train with 1 iterations
 getValue() (loglikelihood, optimizable by label likelihood) = -1947.9484096696992
 CRF finished one iteration of maximizer, i=0
 Evaluator iteration=10 cost=NA (not Optimizable.ByValue)
 Training accuracy=0.8443301913738932
 Testing accuracy=0.8110328638497653
-Testing OOVaccuracy=0.8110328638497653
+Testing OOVaccuracy=0.2413793103448276
 CRF about to train with 1 iterations
 getValue() (loglikelihood, optimizable by label likelihood) = -1613.082178650698
 CRF finished one iteration of maximizer, i=0
 Evaluator iteration=11 cost=NA (not Optimizable.ByValue)
 Training accuracy=0.8711796629534418
 Testing accuracy=0.8133802816901409
-Testing OOVaccuracy=0.8133802816901409
+Testing OOVaccuracy=0.10344827586206896
 CRF about to train with 1 iterations
 getValue() (loglikelihood, optimizable by label likelihood) = -1458.736498929504
 CRF finished one iteration of maximizer, i=0
 Evaluator iteration=12 cost=NA (not Optimizable.ByValue)
 Training accuracy=0.8034847186518138
 Testing accuracy=0.7241784037558685
-Testing OOVaccuracy=0.7241784037558685
+Testing OOVaccuracy=0.06896551724137931
 CRF about to train with 1 iterations
 getValue() (loglikelihood, optimizable by label likelihood) = -1364.55917030403
 CRF finished one iteration of maximizer, i=0
 Evaluator iteration=13 cost=NA (not Optimizable.ByValue)
 Training accuracy=0.9097400742644959
 Testing accuracy=0.8509389671361502
-Testing OOVaccuracy=0.8509389671361502
+Testing OOVaccuracy=0.2413793103448276
 CRF about to train with 1 iterations
 getValue() (loglikelihood, optimizable by label likelihood) = -1286.6615669667183
 CRF finished one iteration of maximizer, i=0
 Evaluator iteration=14 cost=NA (not Optimizable.ByValue)
 Training accuracy=0.9165952584975722
 Testing accuracy=0.8532863849765259
-Testing OOVaccuracy=0.8532863849765259
+Testing OOVaccuracy=0.20689655172413793
 CRF about to train with 1 iterations
 getValue() (loglikelihood, optimizable by label likelihood) = -1154.1035541112367
 CRF finished one iteration of maximizer, i=0
 Evaluator iteration=15 cost=NA (not Optimizable.ByValue)
 Training accuracy=0.9280205655526992
 Testing accuracy=0.8755868544600939
-Testing OOVaccuracy=0.8755868544600939
+Testing OOVaccuracy=0.20689655172413793
 CRF about to train with 1 iterations
 getValue() (loglikelihood, optimizable by label likelihood) = -1057.9475745625468
 CRF finished one iteration of maximizer, i=0
 Evaluator iteration=16 cost=NA (not Optimizable.ByValue)
 Training accuracy=0.9331619537275064
 Testing accuracy=0.886150234741784
-Testing OOVaccuracy=0.886150234741784
+Testing OOVaccuracy=0.20689655172413793
 CRF about to train with 1 iterations
 getValue() (loglikelihood, optimizable by label likelihood) = -933.7011839488488
 CRF finished one iteration of maximizer, i=0
 Evaluator iteration=17 cost=NA (not Optimizable.ByValue)
 Training accuracy=0.9548700371322479
 Testing accuracy=0.8943661971830986
-Testing OOVaccuracy=0.8943661971830986
+Testing OOVaccuracy=0.20689655172413793
 CRF about to train with 1 iterations
 getValue() (loglikelihood, optimizable by label likelihood) = -827.0128592937515
 CRF finished one iteration of maximizer, i=0
 Evaluator iteration=18 cost=NA (not Optimizable.ByValue)
 Training accuracy=0.9702942016566696
 Testing accuracy=0.9061032863849765
-Testing OOVaccuracy=0.9061032863849765
+Testing OOVaccuracy=0.20689655172413793
 CRF about to train with 1 iterations
 getValue() (loglikelihood, optimizable by label likelihood) = -770.7770983616947
 CRF finished one iteration of maximizer, i=0
 Evaluator iteration=19 cost=NA (not Optimizable.ByValue)
 Training accuracy=0.9762924878606113
 Testing accuracy=0.9154929577464789
-Testing OOVaccuracy=0.9154929577464789
+Testing OOVaccuracy=0.2413793103448276
 CRF about to train with 1 iterations
 getValue() (loglikelihood, optimizable by label likelihood) = -706.7402287827351
 CRF finished one iteration of maximizer, i=0
 Evaluator iteration=20 cost=NA (not Optimizable.ByValue)
 Training accuracy=0.9845758354755784
 Testing accuracy=0.9154929577464789
-Testing OOVaccuracy=0.9154929577464789
+Testing OOVaccuracy=0.2413793103448276
 CRF about to train with 1 iterations
 getValue() (loglikelihood, optimizable by label likelihood) = -677.4918999310813
 CRF finished one iteration of maximizer, i=0
 Evaluator iteration=21 cost=NA (not Optimizable.ByValue)
 Training accuracy=0.988860325621251
 Testing accuracy=0.9225352112676056
-Testing OOVaccuracy=0.9225352112676056
+Testing OOVaccuracy=0.20689655172413793
 CRF about to train with 1 iterations
 getValue() (loglikelihood, optimizable by label likelihood) = -650.0683305909452
 CRF finished one iteration of maximizer, i=0
 Evaluator iteration=22 cost=NA (not Optimizable.ByValue)
 Training accuracy=0.992002285061411
 Testing accuracy=0.9237089201877934
-Testing OOVaccuracy=0.9237089201877934
+Testing OOVaccuracy=0.3103448275862069
 CRF about to train with 1 iterations
 getValue() (loglikelihood, optimizable by label likelihood) = -629.7516598771092
 CRF finished one iteration of maximizer, i=0
 Evaluator iteration=23 cost=NA (not Optimizable.ByValue)
 Training accuracy=0.9948586118251928
 Testing accuracy=0.9213615023474179
-Testing OOVaccuracy=0.9213615023474179
+Testing OOVaccuracy=0.27586206896551724
 CRF about to train with 1 iterations
 getValue() (loglikelihood, optimizable by label likelihood) = -610.0468144042497
 CRF finished one iteration of maximizer, i=0
 Evaluator iteration=24 cost=NA (not Optimizable.ByValue)
 Training accuracy=0.9965724078834619
 Testing accuracy=0.9213615023474179
-Testing OOVaccuracy=0.9213615023474179
+Testing OOVaccuracy=0.2413793103448276
 CRF about to train with 1 iterations
 getValue() (loglikelihood, optimizable by label likelihood) = -600.3439605293254
 CRF finished one iteration of maximizer, i=0
 Evaluator iteration=25 cost=NA (not Optimizable.ByValue)
 Training accuracy=0.9977149385889745
 Testing accuracy=0.9237089201877934
-Testing OOVaccuracy=0.9237089201877934
+Testing OOVaccuracy=0.2413793103448276
 CRF about to train with 1 iterations
 getValue() (loglikelihood, optimizable by label likelihood) = -587.2147668981879
 CRF finished one iteration of maximizer, i=0
 Evaluator iteration=26 cost=NA (not Optimizable.ByValue)
 Training accuracy=0.9980005712653528
 Testing accuracy=0.9272300469483568
-Testing OOVaccuracy=0.9272300469483568
+Testing OOVaccuracy=0.27586206896551724
 CRF about to train with 1 iterations
 getValue() (loglikelihood, optimizable by label likelihood) = -580.540555992368
 CRF finished one iteration of maximizer, i=0
 Evaluator iteration=27 cost=NA (not Optimizable.ByValue)
 Training accuracy=0.9980005712653528
 Testing accuracy=0.9295774647887324
-Testing OOVaccuracy=0.9295774647887324
+Testing OOVaccuracy=0.27586206896551724
 CRF about to train with 1 iterations
 getValue() (loglikelihood, optimizable by label likelihood) = -574.7040729567875
 CRF finished one iteration of maximizer, i=0
 Evaluator iteration=28 cost=NA (not Optimizable.ByValue)
 Training accuracy=0.998286203941731
 Testing accuracy=0.9295774647887324
-Testing OOVaccuracy=0.9295774647887324
+Testing OOVaccuracy=0.27586206896551724
 CRF about to train with 1 iterations
 getValue() (loglikelihood, optimizable by label likelihood) = -567.8210220436456
 CRF finished one iteration of maximizer, i=0
 Evaluator iteration=29 cost=NA (not Optimizable.ByValue)
 Training accuracy=0.998286203941731
 Testing accuracy=0.9284037558685446
-Testing OOVaccuracy=0.9284037558685446
+Testing OOVaccuracy=0.27586206896551724
 CRF about to train with 1 iterations
 getValue() (loglikelihood, optimizable by label likelihood) = -562.7192939635796
 CRF finished one iteration of maximizer, i=0
 Evaluator iteration=30 cost=NA (not Optimizable.ByValue)
 Training accuracy=0.998286203941731
 Testing accuracy=0.9295774647887324
-Testing OOVaccuracy=0.9295774647887324
+Testing OOVaccuracy=0.2413793103448276
 CRF about to train with 1 iterations
 getValue() (loglikelihood, optimizable by label likelihood) = -559.1862222390594
 CRF finished one iteration of maximizer, i=0
 Evaluator iteration=31 cost=NA (not Optimizable.ByValue)
 Training accuracy=0.998286203941731
 Testing accuracy=0.926056338028169
-Testing OOVaccuracy=0.926056338028169
+Testing OOVaccuracy=0.2413793103448276
 CRF about to train with 1 iterations
 getValue() (loglikelihood, optimizable by label likelihood) = -555.4874613113175
 CRF finished one iteration of maximizer, i=0
 Evaluator iteration=32 cost=NA (not Optimizable.ByValue)
 Training accuracy=0.9985718366181091
 Testing accuracy=0.9284037558685446
-Testing OOVaccuracy=0.9284037558685446
+Testing OOVaccuracy=0.3103448275862069
 CRF about to train with 1 iterations
 getValue() (loglikelihood, optimizable by label likelihood) = -552.6769470165123
 CRF finished one iteration of maximizer, i=0
 Evaluator iteration=33 cost=NA (not Optimizable.ByValue)
 Training accuracy=0.9985718366181091
 Testing accuracy=0.931924882629108
-Testing OOVaccuracy=0.931924882629108
+Testing OOVaccuracy=0.27586206896551724
 CRF about to train with 1 iterations
 getValue() (loglikelihood, optimizable by label likelihood) = -552.1157893543366
 CRF finished one iteration of maximizer, i=0
 Evaluator iteration=34 cost=NA (not Optimizable.ByValue)
 Training accuracy=0.9985718366181091
 Testing accuracy=0.931924882629108
-Testing OOVaccuracy=0.931924882629108
+Testing OOVaccuracy=0.27586206896551724
 CRF about to train with 1 iterations
 getValue() (loglikelihood, optimizable by label likelihood) = -549.4799442363571
 CRF finished one iteration of maximizer, i=0
 Evaluator iteration=35 cost=NA (not Optimizable.ByValue)
 Training accuracy=0.9985718366181091
 Testing accuracy=0.9307511737089202
-Testing OOVaccuracy=0.9307511737089202
+Testing OOVaccuracy=0.2413793103448276
 CRF about to train with 1 iterations
 getValue() (loglikelihood, optimizable by label likelihood) = -549.0221771536526
 CRF finished one iteration of maximizer, i=0
 Evaluator iteration=36 cost=NA (not Optimizable.ByValue)
 Training accuracy=0.9985718366181091
 Testing accuracy=0.9307511737089202
-Testing OOVaccuracy=0.9307511737089202
+Testing OOVaccuracy=0.2413793103448276
 CRF about to train with 1 iterations
 getValue() (loglikelihood, optimizable by label likelihood) = -548.0243335018291
 CRF finished one iteration of maximizer, i=0
 Evaluator iteration=37 cost=NA (not Optimizable.ByValue)
 Training accuracy=0.9985718366181091
 Testing accuracy=0.9248826291079812
-Testing OOVaccuracy=0.9248826291079812
+Testing OOVaccuracy=0.20689655172413793
 CRF about to train with 1 iterations
 getValue() (loglikelihood, optimizable by label likelihood) = -548.1725940224243
 getValue() (loglikelihood, optimizable by label likelihood) = -547.6134452842605
@@ -2487,63 +2487,63 @@ CRF finished one iteration of maximizer, i=0
 Evaluator iteration=38 cost=NA (not Optimizable.ByValue)
 Training accuracy=0.9985718366181091
 Testing accuracy=0.926056338028169
-Testing OOVaccuracy=0.926056338028169
+Testing OOVaccuracy=0.20689655172413793
 CRF about to train with 1 iterations
 getValue() (loglikelihood, optimizable by label likelihood) = -547.3176625970723
 CRF finished one iteration of maximizer, i=0
 Evaluator iteration=39 cost=NA (not Optimizable.ByValue)
 Training accuracy=0.9985718366181091
 Testing accuracy=0.926056338028169
-Testing OOVaccuracy=0.926056338028169
+Testing OOVaccuracy=0.20689655172413793
 CRF about to train with 1 iterations
 getValue() (loglikelihood, optimizable by label likelihood) = -546.9542809753268
 CRF finished one iteration of maximizer, i=0
 Evaluator iteration=40 cost=NA (not Optimizable.ByValue)
 Training accuracy=0.9985718366181091
 Testing accuracy=0.9272300469483568
-Testing OOVaccuracy=0.9272300469483568
+Testing OOVaccuracy=0.20689655172413793
 CRF about to train with 1 iterations
 getValue() (loglikelihood, optimizable by label likelihood) = -546.8748141544752
 CRF finished one iteration of maximizer, i=0
 Evaluator iteration=41 cost=NA (not Optimizable.ByValue)
 Training accuracy=0.9985718366181091
 Testing accuracy=0.926056338028169
-Testing OOVaccuracy=0.926056338028169
+Testing OOVaccuracy=0.20689655172413793
 CRF about to train with 1 iterations
 getValue() (loglikelihood, optimizable by label likelihood) = -546.6307154434317
 CRF finished one iteration of maximizer, i=0
 Evaluator iteration=42 cost=NA (not Optimizable.ByValue)
 Training accuracy=0.9985718366181091
 Testing accuracy=0.9272300469483568
-Testing OOVaccuracy=0.9272300469483568
+Testing OOVaccuracy=0.20689655172413793
 CRF about to train with 1 iterations
 getValue() (loglikelihood, optimizable by label likelihood) = -546.5160857252338
 CRF finished one iteration of maximizer, i=0
 Evaluator iteration=43 cost=NA (not Optimizable.ByValue)
 Training accuracy=0.9985718366181091
 Testing accuracy=0.9272300469483568
-Testing OOVaccuracy=0.9272300469483568
+Testing OOVaccuracy=0.20689655172413793
 CRF about to train with 1 iterations
 getValue() (loglikelihood, optimizable by label likelihood) = -546.3950854691826
 CRF finished one iteration of maximizer, i=0
 Evaluator iteration=44 cost=NA (not Optimizable.ByValue)
 Training accuracy=0.9985718366181091
 Testing accuracy=0.9272300469483568
-Testing OOVaccuracy=0.9272300469483568
+Testing OOVaccuracy=0.20689655172413793
 CRF about to train with 1 iterations
 getValue() (loglikelihood, optimizable by label likelihood) = -546.2769172459667
 CRF finished one iteration of maximizer, i=0
 Evaluator iteration=45 cost=NA (not Optimizable.ByValue)
 Training accuracy=0.9985718366181091
 Testing accuracy=0.926056338028169
-Testing OOVaccuracy=0.926056338028169
+Testing OOVaccuracy=0.20689655172413793
 CRF about to train with 1 iterations
 getValue() (loglikelihood, optimizable by label likelihood) = -546.1474538518223
 CRF finished one iteration of maximizer, i=0
 Evaluator iteration=46 cost=NA (not Optimizable.ByValue)
 Training accuracy=0.9985718366181091
 Testing accuracy=0.926056338028169
-Testing OOVaccuracy=0.926056338028169
+Testing OOVaccuracy=0.20689655172413793
 CRF about to train with 1 iterations
 getValue() (loglikelihood, optimizable by label likelihood) = -546.1157427484559
 Exiting L-BFGS on termination #1:
@@ -2553,4 +2553,4 @@ CRF training has converged, i=0
 Evaluator iteration=47 cost=NA (not Optimizable.ByValue)
 Training accuracy=0.9985718366181091
 Testing accuracy=0.926056338028169
-Testing OOVaccuracy=0.926056338028169
+Testing OOVaccuracy=0.20689655172413793

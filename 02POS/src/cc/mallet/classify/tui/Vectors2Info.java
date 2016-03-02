@@ -28,25 +28,24 @@ public class Vectors2Info
 {
 	private static Logger logger = MalletLogger.getLogger(Vectors2Info.class.getName());
 
-	static CommandOption.File inputFile = new CommandOption.File(Vectors2Info.class, "input", "FILE", true, new File("-"),
+	static CommandOption.File inputFile = new CommandOption.File
+	(Vectors2Info.class, "input", "FILE", true, new File("-"),
 	 "Read the instance list from this file; Using - indicates stdin.", null);
 
-	static CommandOption.Boolean printInstances = new CommandOption.Boolean(Vectors2Info.class, "print-instances", "N", false, false,
-	 "Print labels and contents for all instances.", null);
-
-	static CommandOption.Integer printInfogain = new CommandOption.Integer(Vectors2Info.class, "print-infogain", "N", false, 0,
+	static CommandOption.Integer printInfogain = new CommandOption.Integer
+	(Vectors2Info.class, "print-infogain", "N", false, 0,
 	 "Print top N words by information gain, sorted.", null);
 
-	static CommandOption.Boolean printLabels = new CommandOption.Boolean(Vectors2Info.class, "print-labels", "[TRUE|FALSE]", false, false,
+	static CommandOption.Boolean printLabels = new CommandOption.Boolean
+	(Vectors2Info.class, "print-labels", "[TRUE|FALSE]", false, false,
 	 "Print class labels known to instance list, one per line.", null);
 
-	static CommandOption.Boolean printFeatures = new CommandOption.Boolean(Vectors2Info.class, "print-features", "[TRUE|FALSE]", false, false,
+	static CommandOption.Boolean printFeatures = new CommandOption.Boolean
+	(Vectors2Info.class, "print-features", "[TRUE|FALSE]", false, false,
 	 "Print the data alphabet, one feature per line.", null);
 
-	static CommandOption.Boolean printFeatureCounts = new CommandOption.Boolean(Vectors2Info.class, "print-feature-counts", "[TRUE|FALSE]", false, false,
-	 "Print feature names, feature counts (ie term frequency), and feature index counts (ie document frequency).", null);
-
-	static CommandOption.String printMatrix = new CommandOption.String(Vectors2Info.class, "print-matrix", "STRING", false, "sic",
+	static CommandOption.String printMatrix = new CommandOption.String
+	(Vectors2Info.class, "print-matrix", "STRING", false, "sic",
 	 "Print word/document matrix in the specified format (a|s)(b|i)(n|w|c|e), for (all vs. sparse), (binary vs. integer), (number vs. word vs. combined vs. empty)", null)
 	{
 		public void parseArg(java.lang.String arg) {
@@ -98,23 +97,12 @@ public class Vectors2Info
 			System.out.print ("\n");
 		}
 
-		if (printInstances.value) {
-			for (Instance instance: instances) {
-				System.out.println(instance.getName() + "\t" + instance.getTarget() + "\t" + instance.getData());
-			}
-		}
-
-		if (printFeatureCounts.value) {
-			FeatureCountTool counter = new FeatureCountTool(instances);
-			counter.count();
-			counter.printCounts();
-		}
-
 		if (printFeatures.value) {
 			Alphabet alphabet = instances.getDataAlphabet();
 			for (int i = 0; i < alphabet.size(); i++) {
 				System.out.println(alphabet.lookupObject(i));
 			}
+			System.out.print ("\n");
 		}
 
 		if (printInfogain.value > 0) {

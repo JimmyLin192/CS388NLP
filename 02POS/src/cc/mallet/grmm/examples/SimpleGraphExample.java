@@ -58,7 +58,7 @@ public class SimpleGraphExample {
     for (int varnum = 0; varnum < allVars.length; varnum++) {
       Variable var = allVars[varnum];
       Factor ptl = inf.lookupMarginal (var);
-      for (AssignmentIterator it = ptl.assignmentIterator (); it.hasNext (); it.advance()) {
+      for (AssignmentIterator it = ptl.assignmentIterator (); it.hasNext ();) {
         int outcome = it.indexOfCurrentAssn ();
         System.out.println (var+"  "+outcome+"   "+ptl.value (it));
       }

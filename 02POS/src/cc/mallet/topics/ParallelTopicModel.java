@@ -113,30 +113,11 @@ public class ParallelTopicModel implements Serializable {
 		return ret;
 	}
 
-	public ParallelTopicModel (LabelAlphabet topicAlphabet, double alphaSum, double beta) {
-		
+	public ParallelTopicModel (LabelAlphabet topicAlphabet, double alphaSum, double beta)
+	{
 		this.data = new ArrayList<TopicAssignment>();
 		this.topicAlphabet = topicAlphabet;
-		this.alphaSum = alphaSum;
-		this.beta = beta;
-
-		setNumTopics(topicAlphabet.size());
-
-		formatter = NumberFormat.getInstance();
-		formatter.setMaximumFractionDigits(5);
-
-		logger.info("Mallet LDA: " + numTopics + " topics, " + topicBits + " topic bits, " + 
-					Integer.toBinaryString(topicMask) + " topic mask");
-	}
-	
-	public Alphabet getAlphabet() { return alphabet; }
-	public LabelAlphabet getTopicAlphabet() { return topicAlphabet; }
-	public int getNumTopics() { return numTopics; }
-	
-	/** Set or reset the number of topics. This method will not change any token-topic assignments,
-		so it should only be used before initializing or restoring a previously saved state. */
-	public void setNumTopics(int numTopics) {
-		this.numTopics = numTopics;
+		this.numTopics = topicAlphabet.size();
 
 		if (Integer.bitCount(numTopics) == 1) {
 			// exact power of 2
@@ -148,18 +129,27 @@ public class ParallelTopicModel implements Serializable {
 			topicMask = Integer.highestOneBit(numTopics) * 2 - 1;
 			topicBits = Integer.bitCount(topicMask);
 		}
-		
+
+
+		this.alphaSum = alphaSum;
 		this.alpha = new double[numTopics];
 		Arrays.fill(alpha, alphaSum / numTopics);
+		this.beta = beta;
 		
 		tokensPerTopic = new int[numTopics];
-	}
+		
+		formatter = NumberFormat.getInstance();
+		formatter.setMaximumFractionDigits(5);
 
+		logger.info("Coded LDA: " + numTopics + " topics, " + topicBits + " topic bits, " + 
+					Integer.toBinaryString(topicMask) + " topic mask");
+	}
+	
+	public Alphabet getAlphabet() { return alphabet; }
+	public LabelAlphabet getTopicAlphabet() { return topicAlphabet; }
+	public int getNumTopics() { return numTopics; }
 	public ArrayList<TopicAssignment> getData() { return data; }
 	
-	public int[][] getTypeTopicCounts() { return typeTopicCounts; }
-	public int[] getTokensPerTopic() { return tokensPerTopic; }
-
 	public void setNumIterations (int numIterations) {
 		this.numIterations = numIterations;
 	}
@@ -227,6 +217,34 @@ public class ParallelTopicModel implements Serializable {
 		numTypes = alphabet.size();
 		
 		betaSum = beta * numTypes;
+		
+		typeTopicCounts = new int[numTypes][];
+
+		// Get the total number of occurrences of each word type
+		//int[] typeTotals = new int[numTypes];
+		typeTotals = new int[numTypes];
+
+		int doc = 0;
+		for (Instance instance : training) {
+			doc++;
+			FeatureSequence tokens = (FeatureSequence) instance.getData();
+			for (int position = 0; position < tokens.getLength(); position++) {
+				int type = tokens.getIndexAtPosition(position);
+				typeTotals[ type ]++;
+			}
+		}
+
+		maxTypeCount = 0;
+
+		// Allocate enough space so that we never have to worry about
+		//  overflows: either the number of topics or the number of times
+		//  the type occurs.
+		for (int type = 0; type < numTypes; type++) {
+			if (typeTotals[type] > maxTypeCount) { maxTypeCount = typeTotals[type]; }
+			typeTopicCounts[type] = new int[ Math.min(numTopics, typeTotals[type]) ];
+		}
+		
+		doc = 0;
 
 		Randoms random = null;
 		if (randomSeed == -1) {
@@ -237,6 +255,8 @@ public class ParallelTopicModel implements Serializable {
 		}
 
 		for (Instance instance : training) {
+			doc++;
+
 			FeatureSequence tokens = (FeatureSequence) instance.getData();
 			LabelSequence topicSequence =
 				new LabelSequence(topicAlphabet, new int[ tokens.size() ]);
@@ -249,8 +269,8 @@ public class ParallelTopicModel implements Serializable {
 				
 			}
 
-			TopicAssignment t = new TopicAssignment(instance, topicSequence);
-			data.add(t);
+			TopicAssignment t = new TopicAssignment (instance, topicSequence);
+			data.add (t);
 		}
 		
 		buildInitialTypeTopicCounts();
@@ -266,23 +286,6 @@ public class ParallelTopicModel implements Serializable {
 
 		// Skip some lines starting with "#" that describe the format and specify hyperparameters
 		while (line.startsWith("#")) {
-			if (line.startsWith("#alpha : ")) {
-				line = line.replace("#alpha : ", "");
-				fields = line.split(" ");
-				
-				setNumTopics(fields.length);
-				this.alphaSum = 0.0;
-				for (int topic = 0; topic < fields.length; topic++) {
-					this.alpha[topic] = Double.parseDouble(fields[topic]);
-					this.alphaSum += this.alpha[topic];
-				}
-			}
-			else if (line.startsWith("#beta : ")) {
-				line = line.replace("#beta : ", "");
-				this.beta = Double.parseDouble(line);
-				this.betaSum = beta * numTypes;
-			}
-			
 			line = reader.readLine();
 		}
 		
@@ -316,34 +319,26 @@ public class ParallelTopicModel implements Serializable {
 	}
 
 	public void buildInitialTypeTopicCounts () {
+
+		// Clear the topic totals
+		Arrays.fill(tokensPerTopic, 0);
 		
-		typeTopicCounts = new int[numTypes][];
-		tokensPerTopic = new int[numTopics];
+		// Clear the type/topic counts, only 
+		//  looking at the entries before the first 0 entry.
 
-		// Get the total number of occurrences of each word type
-		//int[] typeTotals = new int[numTypes];
-		typeTotals = new int[numTypes];
-		
-		// Create the type-topic counts data structure
-		for (TopicAssignment document : data) {
-
-			FeatureSequence tokens = (FeatureSequence) document.instance.getData();
-			for (int position = 0; position < tokens.getLength(); position++) {
-				int type = tokens.getIndexAtPosition(position);
-				typeTotals[ type ]++;
-			}
-		}
-
-		maxTypeCount = 0;
-
-		// Allocate enough space so that we never have to worry about
-		//  overflows: either the number of topics or the number of times
-		//  the type occurs.
 		for (int type = 0; type < numTypes; type++) {
-			if (typeTotals[type] > maxTypeCount) { maxTypeCount = typeTotals[type]; }
-			typeTopicCounts[type] = new int[ Math.min(numTopics, typeTotals[type]) ];
+			
+			int[] topicCounts = typeTopicCounts[type];
+			
+			int position = 0;
+			while (position < topicCounts.length && 
+				   topicCounts[position] > 0) {
+				topicCounts[position] = 0;
+				position++;
+			}
+
 		}
-		
+
 		for (TopicAssignment document : data) {
 
 			FeatureSequence tokens = (FeatureSequence) document.instance.getData();
@@ -608,16 +603,7 @@ public class ParallelTopicModel implements Serializable {
 			}
 		}
 		else {
-			try {
-				alphaSum = Dirichlet.learnParameters(alpha, topicDocCounts, docLengthCounts, 1.001, 1.0, 1);
-			} catch (RuntimeException e) {
-				// Dirichlet optimization has become unstable. This is known to happen for very small corpora (~5 docs).
-				logger.warning("Dirichlet optimization has become unstable. Resetting to alpha_t = 1.0.");
-				alphaSum = numTopics;
-				for (int topic = 0; topic < numTopics; topic++) {
-					alpha[topic] = 1.0;
-				}
-			}
+			alphaSum = Dirichlet.learnParameters(alpha, topicDocCounts, docLengthCounts, 1.001, 1.0, 1);
 		}
 	}
 
@@ -929,193 +915,14 @@ public class ParallelTopicModel implements Serializable {
 		
 		logger.info(timeReport.toString());
 	}
-
-	/** This method implements iterated conditional modes, which is equivalent to Gibbs sampling,
-	 *   but replacing sampling from the conditional distribution with taking the maximum 
-	 *   topic. It tends to converge within a small number of iterations for models that have 
-	 *   reached a good state through Gibbs sampling. */ 
-	public void maximize(int iterations) {
-
-		int iteration = 0;
-
-		int totalChange = Integer.MAX_VALUE;
-		
-		double[] topicCoefficients = new double[numTopics];
-				
-		int currentTopic, currentValue;
-
-		while (iteration < iterations && totalChange > 0) {
-
-			long iterationStart = System.currentTimeMillis();
-
-			totalChange = 0;
-			   
-			// Loop over every document in the corpus
-			for (int doc = 0; doc < data.size(); doc++) {
-				FeatureSequence tokenSequence =
-					(FeatureSequence) data.get(doc).instance.getData();
-				LabelSequence topicSequence =
-					(LabelSequence) data.get(doc).topicSequence;
-				
-				int[] oneDocTopics = topicSequence.getFeatures();
-
-				int[] currentTypeTopicCounts;
-				int type, oldTopic, newTopic;
-
-				int docLength = tokenSequence.getLength();
-
-				int[] localTopicCounts = new int[numTopics];
-
-				//populate topic counts
-				for (int position = 0; position < docLength; position++) {
-					localTopicCounts[oneDocTopics[position]]++;
-				}
-				
-				int globalMaxTopic = 0;
-				double globalMaxScore = 0.0;
-				for (int topic = 0; topic < numTopics; topic++) {
-					topicCoefficients[topic] = (alpha[topic] + localTopicCounts[topic]) / (betaSum + tokensPerTopic[topic]);
-					if (beta * topicCoefficients[topic] > globalMaxScore) {
-						globalMaxTopic = topic;
-						globalMaxScore = beta * topicCoefficients[topic];
-					}
-				}
-
-				double score, maxScore;
-				double[] topicTermScores = new double[numTopics];
-
-				//Iterate over the positions (words) in the document 
-				for (int position = 0; position < docLength; position++) {
-					type = tokenSequence.getIndexAtPosition(position);
-					oldTopic = oneDocTopics[position];
-
-					// Grab the relevant row from our two-dimensional array
-					currentTypeTopicCounts = typeTopicCounts[type];
-
-					//Remove this token from all counts. 
-					localTopicCounts[oldTopic]--;
-					tokensPerTopic[oldTopic]--;
-					
-					// Recalculate the word-invariant part
-					topicCoefficients[oldTopic] = (alpha[oldTopic] + localTopicCounts[oldTopic]) / (betaSum + tokensPerTopic[oldTopic]);
-
-					// If the topic we just decremented was the previous max topic, search
-					//  for a new max topic.
-					if (oldTopic == globalMaxTopic) {
-						globalMaxScore = beta * topicCoefficients[oldTopic];
-						for (int topic = 0; topic < numTopics; topic++) {
-							if (beta * topicCoefficients[topic] > globalMaxScore) {
-								globalMaxTopic = topic;
-								globalMaxScore = beta * topicCoefficients[topic];
-							}
-						}
-					}
-
-					newTopic = globalMaxTopic;
-					maxScore = globalMaxScore;
-					
-					assert(tokensPerTopic[oldTopic] >= 0) : "old Topic " + oldTopic + " below 0";
-
-					int index = 0;
-					boolean alreadyDecremented = false;
-
-					while (index < currentTypeTopicCounts.length && 
-						   currentTypeTopicCounts[index] > 0) {
-						currentTopic = currentTypeTopicCounts[index] & topicMask;
-						currentValue = currentTypeTopicCounts[index] >> topicBits;
-
-						if (! alreadyDecremented && currentTopic == oldTopic) {
-
-							// We're decrementing and adding up the 
-							//  sampling weights at the same time, but
-							//  decrementing may require us to reorder
-							//  the topics, so after we're done here,
-							//  look at this cell in the array again.
-
-							currentValue --;
-							if (currentValue == 0) {
-								currentTypeTopicCounts[index] = 0;
-							}
-							else {
-								currentTypeTopicCounts[index] = (currentValue << topicBits) + oldTopic;
-							}
-							
-							// Shift the reduced value to the right, if necessary.
-
-							int subIndex = index;
-							while (subIndex < currentTypeTopicCounts.length - 1 && 
-								   currentTypeTopicCounts[subIndex] < currentTypeTopicCounts[subIndex + 1]) {
-								int temp = currentTypeTopicCounts[subIndex];
-								currentTypeTopicCounts[subIndex] = currentTypeTopicCounts[subIndex + 1];
-								currentTypeTopicCounts[subIndex + 1] = temp;
-								
-								subIndex++;
-							}
-
-							alreadyDecremented = true;
-						}
-						else {
-							score = 
-								topicCoefficients[currentTopic] * (beta + currentValue);
-							if (score > maxScore) {
-								newTopic = currentTopic;
-								maxScore = score;
-							}
-
-							index++;
-						}
-					}
-
-					// Put that new topic into the counts
-					oneDocTopics[position] = newTopic;
-					localTopicCounts[newTopic]++;
-					tokensPerTopic[newTopic]++;
-
-					index = 0;
-					boolean foundTopic = false;
-					while (! foundTopic && index < currentTypeTopicCounts.length) {
-						currentTopic = currentTypeTopicCounts[index] & topicMask;
-						currentValue = currentTypeTopicCounts[index] >> topicBits;
-
-						if (currentTopic == newTopic) {
-							currentTypeTopicCounts[index] = ((currentValue + 1) << topicBits) + newTopic;
-
-							while (index > 0 && currentTypeTopicCounts[index] > currentTypeTopicCounts[index - 1]) {
-								int temp = currentTypeTopicCounts[index];
-								currentTypeTopicCounts[index] = currentTypeTopicCounts[index - 1];
-								currentTypeTopicCounts[index - 1] = temp;
-							}
-							foundTopic = true;
-						}
-						else if (currentValue == 0) {
-							currentTypeTopicCounts[index] = (1 << topicBits) + newTopic;
-							foundTopic = true;
-						}
-
-						index++;
-					}
-
-					topicCoefficients[newTopic] = (alpha[newTopic] + localTopicCounts[newTopic]) / (betaSum + tokensPerTopic[newTopic]);
-					if (beta * topicCoefficients[newTopic] > globalMaxScore) {
-						globalMaxScore = beta * topicCoefficients[newTopic];
-						globalMaxTopic = newTopic;
-					}
-
-					if (newTopic != oldTopic) {
-						totalChange++;
-					}
-				}
-
-				
-			}
-			
-			long elapsedMillis = System.currentTimeMillis() - iterationStart;
-			logger.info(iteration + "\t" + elapsedMillis + "ms\t" + totalChange + "\t" + (modelLogLikelihood() / totalTokens));
-			
-			iteration++;
-		}
+	
+	public void printTopWords (File file, int numWords, boolean useNewLines) throws IOException {
+		PrintStream out = new PrintStream (file);
+		printTopWords(out, numWords, useNewLines);
+		out.close();
 	}
 	
+
 	/**
 	 *  Return an array of sorted sets (one set per topic). Each set 
 	 *   contains IDSorter objects with integer keys into the alphabet.
@@ -1184,12 +991,6 @@ public class ParallelTopicModel implements Serializable {
 		return result;
 	}
 
-	public void printTopWords (File file, int numWords, boolean useNewLines) throws IOException {
-		PrintStream out = new PrintStream (file);
-		printTopWords(out, numWords, useNewLines);
-		out.close();
-	}
-	
 	public void printTopWords (PrintStream out, int numWords, boolean usingNewLines) {
 		out.print(displayTopWords(numWords, usingNewLines));
 	}
@@ -1203,7 +1004,7 @@ public class ParallelTopicModel implements Serializable {
 		// Print results for each topic
 		for (int topic = 0; topic < numTopics; topic++) {
 			TreeSet<IDSorter> sortedWords = topicSortedWords.get(topic);
-			int word = 0;
+			int word = 1;
 			Iterator<IDSorter> iterator = sortedWords.iterator();
 
 			if (usingNewLines) {
@@ -1231,20 +1032,19 @@ public class ParallelTopicModel implements Serializable {
 	
 	public void topicXMLReport (PrintWriter out, int numWords) {
 		ArrayList<TreeSet<IDSorter>> topicSortedWords = getSortedWords();
-		
 		out.println("<?xml version='1.0' ?>");
 		out.println("<topicModel>");
 		for (int topic = 0; topic < numTopics; topic++) {
 			out.println("  <topic id='" + topic + "' alpha='" + alpha[topic] +
 						"' totalTokens='" + tokensPerTopic[topic] + "'>");
-			int rank = 1;
+			int word = 1;
 			Iterator<IDSorter> iterator = topicSortedWords.get(topic).iterator();
-			while (iterator.hasNext() && rank <= numWords) {
+			while (iterator.hasNext() && word < numWords) {
 				IDSorter info = iterator.next();
-				out.println("	<word rank='" + rank + "' count='" + info.getWeight() + "'>" +
-						  alphabet.lookupObject(info.getID()) + 
+				out.println("	<word rank='" + word + "'>" +
+						  alphabet.lookupObject(info.getID()) +
 						  "</word>");
-				rank++;
+				word++;
 			}
 			out.println("  </topic>");
 		}
@@ -1315,7 +1115,7 @@ public class ParallelTopicModel implements Serializable {
 			AugmentableFeatureVector titles = new AugmentableFeatureVector (new Alphabet());
 
 			// Print words
-			int word = 0;
+			int word = 1;
 			Iterator<IDSorter> iterator = topicSortedWords.get(ti).iterator();
 			while (iterator.hasNext() && word < numWords) {
 				IDSorter info = iterator.next();
@@ -1493,42 +1293,6 @@ public class ParallelTopicModel implements Serializable {
 		out.close();
 	}
 
-	public void printDenseDocumentTopics(PrintWriter out) {
-		int docLen;
-		int[] topicCounts = new int[numTopics];
-		for (int doc = 0; doc < data.size(); doc++) {
-			LabelSequence topicSequence = (LabelSequence) data.get(doc).topicSequence;
-			int[] currentDocTopics = topicSequence.getFeatures();
-
-			StringBuilder builder = new StringBuilder();
-
-			builder.append(doc);
-			builder.append("\t");
-
-			if (data.get(doc).instance.getName() != null) {
-				builder.append(data.get(doc).instance.getName()); 
-			}
-			else {
-				builder.append("no-name");
-			}
-
-			docLen = currentDocTopics.length;
-
-			// Count up the tokens
-			for (int token=0; token < docLen; token++) {
-				topicCounts[ currentDocTopics[token] ]++;
-			}
-
-			// And normalize
-			for (int topic = 0; topic < numTopics; topic++) {
-				builder.append("\t" + ((alpha[topic] + topicCounts[topic]) / (docLen + alphaSum) ));
-			}
-			out.println(builder);
-
-			Arrays.fill(topicCounts, 0);
-		}		
-	}
-
 	public void printDocumentTopics (PrintWriter out) {
 		printDocumentTopics (out, 0.0, -1);
 	}
@@ -1595,190 +1359,6 @@ public class ParallelTopicModel implements Serializable {
 			Arrays.fill(topicCounts, 0);
 		}
 		
-	}
-	
-	public double[][] getSubCorpusTopicWords(boolean[] documentMask, boolean normalized, boolean smoothed) {		
-		double[][] result = new double[numTopics][numTypes];
-		int[] subCorpusTokensPerTopic = new int[numTopics];
-		
-		for (int doc = 0; doc < data.size(); doc++) {
-			if (documentMask[doc]) {
-				int[] words = ((FeatureSequence) data.get(doc).instance.getData()).getFeatures();
-				int[] topics = data.get(doc).topicSequence.getFeatures();
-				for (int position = 0; position < topics.length; position++) {
-					result[ topics[position] ][ words[position] ]++;
-					subCorpusTokensPerTopic[ topics[position] ]++;
-				}
-			}
-		}
-
-		if (smoothed) {
-			for (int topic = 0; topic < numTopics; topic++) {
-				for (int type = 0; type < numTypes; type++) {
-					result[topic][type] += beta;
-				}
-			}
-		}
-
-		if (normalized) {
-			double[] topicNormalizers = new double[numTopics];
-			if (smoothed) {
-				for (int topic = 0; topic < numTopics; topic++) {
-					topicNormalizers[topic] = 1.0 / (subCorpusTokensPerTopic[topic] + numTypes * beta);
-				}
-			}
-			else {
-				for (int topic = 0; topic < numTopics; topic++) {
-					topicNormalizers[topic] = 1.0 / subCorpusTokensPerTopic[topic];
-				}
-			}
-
-			for (int topic = 0; topic < numTopics; topic++) {
-				for (int type = 0; type < numTypes; type++) {
-					result[topic][type] *= topicNormalizers[topic];
-				}
-			}
-		}
-
-		return result;
-	}
-
-	public double[][] getTopicWords(boolean normalized, boolean smoothed) {
-		double[][] result = new double[numTopics][numTypes];
-
-		for (int type = 0; type < numTypes; type++) {
-			int[] topicCounts = typeTopicCounts[type];
-
-			int index = 0;
-			while (index < topicCounts.length &&
-				   topicCounts[index] > 0) {
-
-				int topic = topicCounts[index] & topicMask;
-				int count = topicCounts[index] >> topicBits;
-
-				result[topic][type] += count;
-
-				index++;
-			}
-		}
-
-		if (smoothed) {
-			for (int topic = 0; topic < numTopics; topic++) {
-				for (int type = 0; type < numTypes; type++) {
-					result[topic][type] += beta;
-				}
-			}
-		}
-
-		if (normalized) {
-			double[] topicNormalizers = new double[numTopics];
-			if (smoothed) {
-				for (int topic = 0; topic < numTopics; topic++) {
-					topicNormalizers[topic] = 1.0 / (tokensPerTopic[topic] + numTypes * beta);
-				}
-			}
-			else {
-				for (int topic = 0; topic < numTopics; topic++) {
-					topicNormalizers[topic] = 1.0 / tokensPerTopic[topic];
-				}
-			}
-
-			for (int topic = 0; topic < numTopics; topic++) {
-				for (int type = 0; type < numTypes; type++) {
-					result[topic][type] *= topicNormalizers[topic];
-				}
-			}
-		}
-
-		return result;
-	}
-
-	public double[][] getDocumentTopics(boolean normalized, boolean smoothed) {
-		double[][] result = new double[data.size()][numTopics];
-
-		for (int doc = 0; doc < data.size(); doc++) {
-			int[] topics = data.get(doc).topicSequence.getFeatures();
-			for (int position = 0; position < topics.length; position++) {
-				result[doc][ topics[position] ]++;
-			}
-
-			if (smoothed) {
-				for (int topic = 0; topic < numTopics; topic++) {
-					result[doc][topic] += alpha[topic];
-				}
-			}
-
-			if (normalized) {
-				double sum = 0.0;
-				for (int topic = 0; topic < numTopics; topic++) {
-					sum += result[doc][topic];
-				}
-				double normalizer = 1.0 / sum;
-				for (int topic = 0; topic < numTopics; topic++) {
-					result[doc][topic] *= normalizer;
-				}				
-			}
-		}
-
-		return result;
-	}
-	
-	public ArrayList<TreeSet<IDSorter>> getTopicDocuments(double smoothing) {
-		ArrayList<TreeSet<IDSorter>> topicSortedDocuments = new ArrayList<TreeSet<IDSorter>>(numTopics);
-
-		// Initialize the tree sets
-		for (int topic = 0; topic < numTopics; topic++) {
-			topicSortedDocuments.add(new TreeSet<IDSorter>());
-		}
-
-		int[] topicCounts = new int[numTopics];
-
-		for (int doc = 0; doc < data.size(); doc++) {
-			int[] topics = data.get(doc).topicSequence.getFeatures();
-			for (int position = 0; position < topics.length; position++) {
-				topicCounts[ topics[position] ]++;
-			}
-
-			for (int topic = 0; topic < numTopics; topic++) {
-				topicSortedDocuments.get(topic).add(new IDSorter(doc, (topicCounts[topic] + smoothing) / (topics.length + numTopics * smoothing) ));
-				topicCounts[topic] = 0;
-			}
-		}
-
-		return topicSortedDocuments;
-	}
-	
-	public void printTopicDocuments (PrintWriter out) {
-		printTopicDocuments (out, 100);
-	}
-
-	/**
-	 *  @param out		  A print writer
-	 *  @param count      Print this number of top documents
-	 */
-	public void printTopicDocuments (PrintWriter out, int max)	{
-		out.println("#topic doc name proportion ...");
-		
-		ArrayList<TreeSet<IDSorter>> topicSortedDocuments = getTopicDocuments(10.0);
-
-		for (int topic = 0; topic < numTopics; topic++) {
-			TreeSet<IDSorter> sortedDocuments = topicSortedDocuments.get(topic);
-			
-			int i = 0;
-			for (IDSorter sorter: sortedDocuments) {
-				if (i == max) { break; }
-				
-				int doc = sorter.getID();
-				double proportion = sorter.getWeight();
-				String name = (String) data.get(doc).instance.getName();
-				if (name == null) {
-					name = "no-name";
-				}
-				out.format("%d %d %s %f\n", topic, doc, name, proportion);
-				
-				i++;
-			}
-		}
 	}
 	
 	public void printState (File f) throws IOException {

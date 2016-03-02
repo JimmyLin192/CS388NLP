@@ -76,10 +76,6 @@ public class InferTopics {
 
 			InstanceList instances = InstanceList.load (new File(inputFile.value));
 
-			if (randomSeed.value != 0) {
-				inferencer.setRandomSeed(randomSeed.value);
-			}
-
 			inferencer.writeInferredDistributions(instances, new File(docTopicsFile.value),
 												  numIterations.value, sampleInterval.value,
 												  burnInIterations.value,

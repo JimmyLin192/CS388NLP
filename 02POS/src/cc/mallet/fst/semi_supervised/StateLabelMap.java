@@ -85,14 +85,14 @@ public class StateLabelMap {
     stateToLabel = new HashMap<Integer, Integer>();
     labelToState = new HashMap<Integer, LinkedHashSet<Integer>>();
 
+    Iterator<?> labelIter = null;
     if (isOneToOneMap) {
       // use the same alphabet for state and label 
       stateAlphabet = labelAlphabet;
 
-      int alphaCount = labelAlphabet.size();
-      for (int i = 0; i < alphaCount; i++) {
-
-        String label = (String) labelAlphabet.lookupObject(i);
+      labelIter = labelAlphabet.iterator();
+      while (labelIter.hasNext()) {
+        String label = (String) labelIter.next();
         int labelIndex = labelAlphabet.lookupIndex(label, false); 
 
         stateToLabel.put(labelIndex, labelIndex);
@@ -104,9 +104,9 @@ public class StateLabelMap {
     } else {
       stateAlphabet = new Alphabet();
 
-      int alphaCount = labelAlphabet.size();
-      for (int i = 0; i < alphaCount; i++) {
-        String label = (String) labelAlphabet.lookupObject(i);
+      labelIter = labelAlphabet.iterator();
+      while (labelIter.hasNext()) {
+        String label = (String) labelIter.next();
         labelToState.put(labelAlphabet.lookupIndex(label, false),
                           new LinkedHashSet<Integer>());
       }

@@ -21,7 +21,6 @@ import java.util.logging.Logger;
 import cc.mallet.types.Instance;
 import cc.mallet.types.InstanceList;
 import cc.mallet.types.Sequence;
-import cc.mallet.types.FeatureVector;
 
 import cc.mallet.util.MalletLogger;
 
@@ -34,6 +33,7 @@ public class TokenAccuracyEvaluator extends TransducerEvaluator
 
 	private HashMap<String,Double> accuracy = new HashMap<String,Double>();
 	private HashMap<Object,Integer> vocabularies = new HashMap<Object,Integer>();
+    private static int count = 0;
 
 	public TokenAccuracyEvaluator (InstanceList[] instanceLists, String[] descriptions) {
 		super (instanceLists, descriptions);
@@ -61,9 +61,22 @@ public class TokenAccuracyEvaluator extends TransducerEvaluator
         int numCorrectOOVTokens;
         int totalOOVTokens;
 
+        /*
+        if (description.equals("Testing") && vocabularies.size() == 0) {
+            FileReader fileReader = new FileReader(new File("vocabularies.txt"));
+            BufferedReader br = new BufferedReader(fileReader);
+            String line = null;
+            // if no more lines the readLine() returns null
+            while ((line = br.readLine()) != null) {
+                // reading lines until the end of the file
+                if (line.length() > 0) {
+                    vocabularies.
+                }
+            }
+            */
 		Transducer transducer = trainer.getTransducer();
-		totalTokens = numCorrectTokens = 0;
-        totalOOVTokens = numCorrectOOVTokens = 0;
+		totalTokens = 0; numCorrectTokens = 0;
+        totalOOVTokens = 0; numCorrectOOVTokens = 0;
 		for (int i = 0; i < instances.size(); i++) {
 			Instance instance = instances.get(i);
 			Sequence input = (Sequence) instance.getData();
@@ -76,12 +89,17 @@ public class TokenAccuracyEvaluator extends TransducerEvaluator
 			for (int j = 0; j < trueOutput.size(); j++) {
 				totalTokens++;
                 // for Out-of-vocabulary accounting
-                if (description.equals("Training")) {
-                    vocabularies.put(input.get(j), new Integer(1));
+                if (description.equals("Training") ) {
+                    // keep track of vocabulary set of training dataset
+                    if (count == 0)
+                        vocabularies.put(input.get(j), new Integer(1));
                 } else if (description.equals("Testing")) {
+                    // in testing, we particularly monitor those are not in
+                    // training set
                     if (!vocabularies.containsKey(input.get(j))) 
                         totalOOVTokens ++;
                 } else {
+                    // throw exception for else case
                     assert(false);
                 }
 				if (trueOutput.get(j).equals(predOutput.get(j))) {
@@ -100,11 +118,11 @@ public class TokenAccuracyEvaluator extends TransducerEvaluator
 		accuracy.put(description, acc);
         accuracy.put(description+"OOV", OOVacc);
 		logger.info (description +" accuracy="+acc);
+        count ++;
         if (description.equals("Testing")) 
             logger.info (description +" OOVaccuracy="+OOVacc);
 	}
 
-    
 	/**
 	 * Returns the accuracy from the last time test() or evaluate() was called
 	 * @return

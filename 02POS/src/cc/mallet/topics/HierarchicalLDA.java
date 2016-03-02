@@ -461,26 +461,23 @@ public class HierarchicalLDA {
 		}
 	}	    
 
+
     public void printNodes() {
-		printNode(rootNode, 0, false);
-    }
-    
-    public void printNodes(boolean withWeight) {
-		printNode(rootNode, 0, withWeight);
+		printNode(rootNode, 0);
     }
 
-    public void printNode(NCRPNode node, int indent, boolean withWeight) {
+    public void printNode(NCRPNode node, int indent) {
 		StringBuffer out = new StringBuffer();
 		for (int i=0; i<indent; i++) {
 			out.append("  ");
 		}
 
 		out.append(node.totalTokens + "/" + node.customers + " ");
-		out.append(node.getTopWords(numWordsToDisplay, withWeight));
+		out.append(node.getTopWords(numWordsToDisplay));
 		System.out.println(out);
 	
 		for (NCRPNode child: node.children) {
-			printNode(child, indent + 1, withWeight);
+			printNode(child, indent + 1);
 		}
     }
 
@@ -685,7 +682,7 @@ public class HierarchicalLDA {
 			}
 		}
 	
-		public String getTopWords(int numWords, boolean withWeight) {
+		public String getTopWords(int numWords) {
 			IDSorter[] sortedTypes = new IDSorter[numTypes];
 	    
 			for (int type=0; type < numTypes; type++) {
@@ -695,11 +692,8 @@ public class HierarchicalLDA {
 	    
 			Alphabet alphabet = instances.getDataAlphabet();
 			StringBuffer out = new StringBuffer();
-			for (int i = 0; i < numWords; i++) {
-				if (withWeight){
-					out.append(alphabet.lookupObject(sortedTypes[i].getID()) + ":" + sortedTypes[i].getWeight() + " ");
-				}else
-					out.append(alphabet.lookupObject(sortedTypes[i].getID()) + " ");
+			for (int i=0; i<10; i++) {
+				out.append(alphabet.lookupObject(sortedTypes[i].getID()) + " ");
 			}
 			return out.toString();
 		}
