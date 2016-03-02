@@ -93,6 +93,31 @@ public class FeatureVector extends SparseVector implements Serializable, Alphabe
 		this.dictionary = dict;
 	}
 
+    // =====================================================================
+    // Hash Code for feature vector
+    public int hashCode(){
+        int result = 0;
+        for (int i=0; i < this.indices.length; ++i) 
+            result = result * 16 + indices[i];
+        return result;
+    }
+    // Equality Comparison for feature vector
+    public boolean equals(Object obj) {
+        // false for NULL object
+        if (obj == null) return false;
+        // only consider feature vector comparison
+        if (obj instanceof FeatureVector) {
+            FeatureVector fv = (FeatureVector) obj;
+            if (this.indices.length  != fv.indices.length) return false;
+            for (int i = 0; i < this.indices.length; ++i) 
+                if (this.indices[i] != fv.indices[i]) 
+                    return false;
+            return true;
+        } else 
+            return false;
+    }
+    // =====================================================================
+
 	public static int[] getObjectIndices(Object[] entries, Alphabet dict, boolean addIfNotPresent)
 	{
 		int[] feats = new int[entries.length];

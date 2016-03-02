@@ -1,0 +1,104 @@
+universe = vanilla
+environment = CLASSPATH=/u/jimmylin/workspace/CS388NLP/mallet-2.0.7/class:/u/jimmylin/workspace/CS388NLP/mallet-2.0.7/lib/mallet-deps.jar
+
+Initialdir = /u/jimmylin/workspace/CS388NLP/mallet-2.0.7
+Executable = /usr/bin/java 
+
++Group   = "GRAD"
++Project = "INSTRUCTIONAL"
++ProjectDescription = "CS388 Homework 2"
+
+Log = wsj.CRF/all.clog
+
+Notification = complete
+Notify_user = jimmylin@utexas.edu
+
+Arguments = cc.mallet.fst.SimpleTagger --train true --model-file wsj.CRF/all.model --iterations 3 --test lab datasets/wsj_00.mal.all datasets/wsj_01.mal.all 
+
+Output = wsj.CRF/all.out
+Error  = wsj.CRF/all.err
+Queue 1
+
+universe = vanilla
+environment = CLASSPATH=/u/jimmylin/workspace/CS388NLP/mallet-2.0.7/class:/u/jimmylin/workspace/CS388NLP/mallet-2.0.7/lib/mallet-deps.jar
+
+Initialdir = /u/jimmylin/workspace/CS388NLP/mallet-2.0.7
+Executable = /usr/bin/java 
+
++Group   = "GRAD"
++Project = "INSTRUCTIONAL"
++ProjectDescription = "CS388 Homework 2"
+
+Log = wsj.CRF/caps.clog
+
+Notification = complete
+Notify_user = jimmylin@utexas.edu
+
+Arguments = cc.mallet.fst.SimpleTagger --train true --model-file wsj.CRF/caps.model --training-proportion 1.0 --test lab datasets/wsj_00.mal.caps datasets/wsj_01.mal.caps
+
+Output = wsj.CRF/caps.out
+Error  = wsj.CRF/caps.err
+Queue 1
+
+universe = vanilla
+environment = CLASSPATH=/u/jimmylin/workspace/CS388NLP/mallet-2.0.7/class:/u/jimmylin/workspace/CS388NLP/mallet-2.0.7/lib/mallet-deps.jar
+
+Initialdir = /u/jimmylin/workspace/CS388NLP/mallet-2.0.7
+Executable = /usr/bin/java 
+
++Group   = "GRAD"
++Project = "INSTRUCTIONAL"
++ProjectDescription = "CS388 Homework 2"
+
+Log = wsj.CRF/hyphen.clog
+
+Notification = complete
+Notify_user = jimmylin@utexas.edu
+
+Arguments = cc.mallet.fst.SimpleTagger --train true --model-file wsj.CRF/hyphen.model --training-proportion 1.0 --test lab datasets/wsj_00.mal.hyphen datasets/wsj_01.mal.hyphen
+
+Output = wsj.CRF/hyphen.out
+Error  = wsj.CRF/hyphen.err
+Queue 1
+
+universe = vanilla
+environment = CLASSPATH=/u/jimmylin/workspace/CS388NLP/mallet-2.0.7/class:/u/jimmylin/workspace/CS388NLP/mallet-2.0.7/lib/mallet-deps.jar
+
+Initialdir = /u/jimmylin/workspace/CS388NLP/mallet-2.0.7
+Executable = /usr/bin/java 
+
++Group   = "GRAD"
++Project = "INSTRUCTIONAL"
++ProjectDescription = "CS388 Homework 2"
+
+Log = wsj.CRF/simple.clog
+
+Notification = complete
+Notify_user = jimmylin@utexas.edu
+
+Arguments = cc.mallet.fst.SimpleTagger --train true --model-file wsj.CRF/simple.model --training-proportion 1.0 --test lab datasets/wsj_00.mal.simple datasets/wsj_01.mal.simple
+
+Output = wsj.CRF/simple.out
+Error  = wsj.CRF/simple.err
+Queue 1
+
+universe = vanilla
+environment = CLASSPATH=/u/jimmylin/workspace/CS388NLP/mallet-2.0.7/class:/u/jimmylin/workspace/CS388NLP/mallet-2.0.7/lib/mallet-deps.jar
+
+Initialdir = /u/jimmylin/workspace/CS388NLP/mallet-2.0.7
+Executable = /usr/bin/java 
+
++Group   = "GRAD"
++Project = "INSTRUCTIONAL"
++ProjectDescription = "CS388 Homework 2"
+
+Log = wsj.CRF/suffix.clog
+
+Notification = complete
+Notify_user = jimmylin@utexas.edu
+
+Arguments = cc.mallet.fst.SimpleTagger --train true --model-file wsj.CRF/suffix.model --training-proportion 1.0 --test lab datasets/wsj_00.mal.suffix datasets/wsj_01.mal.suffix
+
+Output = wsj.CRF/suffix.out
+Error  = wsj.CRF/suffix.err
+Queue 1

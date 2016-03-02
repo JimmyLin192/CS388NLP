@@ -1,0 +1,20 @@
+universe = vanilla
+environment = CLASSPATH=/u/jimmylin/workspace/CS388NLP/mallet-2.0.7/class:/u/jimmylin/workspace/CS388NLP/mallet-2.0.7/lib/mallet-deps.jar
+
+Initialdir = /u/jimmylin/workspace/CS388NLP/mallet-2.0.7
+Executable = /usr/bin/java 
+
++Group   = "GRAD"
++Project = "INSTRUCTIONAL"
++ProjectDescription = "CS388 Homework 2"
+
+Log = wsj.CRF/simple.clog
+
+Notification = complete
+Notify_user = jimmylin@utexas.edu
+
+Arguments = cc.mallet.fst.SimpleTagger --train true --model-file wsj.CRF/simple.model --training-proportion 1.0 --test lab datasets/wsj_00.mal.simple datasets/wsj_01.mal.simple
+
+Output = wsj.CRF/simple.out
+Error  = wsj.CRF/simple.err
+Queue 1

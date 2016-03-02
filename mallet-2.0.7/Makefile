@@ -25,6 +25,10 @@ endif
 all: class link-resources
 	$(JAVAC) $(JAVA_FLAGS) `find src -name '*.java'`
 
+tar: 
+	tar czvf cjob.*.wsj run*.sh report.pdf src/cc/mallet/fst/TokenAccuracyEvaluator.java src/cc/mallet/types/FeatureVector.java preprocess.py README 
+
+
 javadoc: html class
 	$(JAVADOC) $(JAVADOC_FLAGS) -classpath "$(MALLET_DIR)/class:$(MALLET_DIR)/lib/mallet-deps.jar:$(MALLET_DIR)/lib/grmm-deps.jar" -d $(MALLET_DIR)/html -sourcepath $(MALLET_DIR)/src -source 1.4 -subpackages edu
 

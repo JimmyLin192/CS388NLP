@@ -13,7 +13,7 @@ Log = wsj.CRF/caps.clog
 Notification = complete
 Notify_user = jimmylin@utexas.edu
 
-Arguments = cc.mallet.fst.SimpleTagger --train true --model-file wsj.CRF/caps.model --training-proportion 1.0 --test lab datasets/wsj_00.mal.caps
+Arguments = cc.mallet.fst.SimpleTagger --train true --model-file wsj.CRF/caps.model --training-proportion 1.0 --test lab datasets/wsj_00.mal.caps datasets/wsj_01.mal.caps
 
 Output = wsj.CRF/caps.out
 Error  = wsj.CRF/caps.err

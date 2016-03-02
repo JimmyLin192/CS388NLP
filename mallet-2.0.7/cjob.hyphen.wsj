@@ -13,7 +13,7 @@ Log = wsj.CRF/hyphen.clog
 Notification = complete
 Notify_user = jimmylin@utexas.edu
 
-Arguments = cc.mallet.fst.SimpleTagger --train true --model-file wsj.CRF/hyphen.model --training-proportion 1.0 --test lab datasets/wsj_00.mal.hyphen
+Arguments = cc.mallet.fst.SimpleTagger --train true --model-file wsj.CRF/hyphen.model --training-proportion 1.0 --test lab datasets/wsj_00.mal.hyphen datasets/wsj_01.mal.hyphen
 
 Output = wsj.CRF/hyphen.out
 Error  = wsj.CRF/hyphen.err
