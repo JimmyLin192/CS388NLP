@@ -26,7 +26,7 @@ all: class link-resources
 	$(JAVAC) $(JAVA_FLAGS) `find src -name '*.java'`
 
 tar: 
-	tar czvf cjob.*.wsj run*.sh report.pdf src/cc/mallet/fst/TokenAccuracyEvaluator.java src/cc/mallet/types/FeatureVector.java preprocess.py README 
+	tar czvf 02POS_Xin.tar.gz cjob.*.wsj run*.sh report.pdf src/cc/mallet/fst/TokenAccuracyEvaluator.java src/cc/mallet/types/FeatureVector.java preprocess.py README 
 
 
 javadoc: html class
