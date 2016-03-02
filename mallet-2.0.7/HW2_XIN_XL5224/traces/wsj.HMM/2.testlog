@@ -1,0 +1,14 @@
+datasets/wsj_01.mal: line 1: For: command not found
+datasets/wsj_01.mal: line 2: six: command not found
+datasets/wsj_01.mal: line 3: years: command not found
+datasets/wsj_01.mal: line 4: ,: command not found
+datasets/wsj_01.mal: line 5: T.: command not found
+datasets/wsj_01.mal: line 6: Marshall: command not found
+datasets/wsj_01.mal: line 7: Hahn: command not found
+datasets/wsj_01.mal: line 8: Jr.: command not found
+datasets/wsj_01.mal: line 9: has: command not found
+datasets/wsj_01.mal: line 10: made: command not found
+datasets/wsj_01.mal: line 11: corporate: command not found
+datasets/wsj_01.mal: line 12: acquisitions: command not found
+datasets/wsj_01.mal: line 13: syntax error near unexpected token `in'
+datasets/wsj_01.mal: line 13: `in IN'
