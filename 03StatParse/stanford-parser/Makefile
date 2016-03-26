@@ -4,6 +4,8 @@
 JAVAC = javac
 JAVAFLAGS = -O -d classes -encoding utf-8
 
+GIT_TRACK_FILE=Makefile MyParser.java wsj_factored.sh wsj_pcfg.sh
+
 
 all:
 	javac -cp "stanford-parser.jar:slf4j-api.jar:slf4j-simple.jar:" MyParser.java
@@ -13,6 +15,11 @@ run:
 
 clean: 
 	rm -rf *.class
+
+push:
+	git add $(GIT_TRACK_FILE)
+	git commit 
+	git push
 
 parser:
 	mkdir -p classes

@@ -108,6 +108,6 @@ class MyParser {
     tp.printTree(parse);
   }
 
-  // private ParserDemo() {} // static methods only
+  private MyParser() {} // static methods only
 
 }
