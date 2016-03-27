@@ -4,7 +4,7 @@
 JAVAC = javac
 JAVAFLAGS = -O -d classes -encoding utf-8
 
-GIT_TRACK_FILE=Makefile MyParser.java wsj_factored.sh wsj_pcfg.sh WSJPreprocessor.java
+GIT_TRACK_FILE=Makefile MyParser.java wsj_factored.sh wsj_pcfg.sh WSJPreprocessor.java BROWNPreprocessor.java
 
 
 all:
