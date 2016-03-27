@@ -11,7 +11,7 @@ all:
 	javac -cp "stanford-parser.jar:slf4j-api.jar:slf4j-simple.jar:" MyParser.java
 
 run:
-	java -cp "stanford-parser.jar:slf4j-api.jar:slf4j-simple.jar:stanford-parser-3.6.0-models.jar:" MyParser
+	java -cp "stanford-parser.jar:slf4j-api.jar:slf4j-simple.jar:stanford-parser-3.6.0-models.jar:" MyParser ../datasets/wsj/02/ ../datasets/brown/cf/ ../datasets/brown/cl/
 
 clean: 
 	rm -rf *.class

@@ -13,6 +13,8 @@ import edu.stanford.nlp.ling.HasWord;
 import edu.stanford.nlp.ling.Sentence;
 import edu.stanford.nlp.trees.*;
 import edu.stanford.nlp.parser.lexparser.LexicalizedParser;
+import edu.stanford.nlp.parser.lexparser.Options;
+import edu.stanford.nlp.parser.lexparser.EvaluateTreebank;
 
 class MyParser {
 
@@ -27,16 +29,12 @@ class MyParser {
      * Usage: {@code java MyParser [trainSeed] [selfTrain] [testSet]}
      */
     public static void main(String[] args) {
-        String parserModel = "edu/stanford/nlp/models/lexparser/englishPCFG.ser.gz";
-        // if (args.length > 0) parserModel = args[0];
-        LexicalizedParser lp = LexicalizedParser.loadModel(parserModel);
-
         /* process input arguments */
         if (args.length == 3) {
             String tsFile = args[0]; // Train Seed file name
             String sfFile = args[1]; // Self Train file name
             String testFile = args[2]; // Test Set file name
-            selfTrain (lp, tsFile, sfFile, testFile);
+            selfTrain (tsFile, sfFile, testFile);
         }
         else {
             System.out.println("Incorrect Calling!");
@@ -46,10 +44,45 @@ class MyParser {
     }
 
     /* Self Training Parser */
-    public static void selfTrain (LexicalizedParser lp, String tsFile, String sfFile, String testFile) {
-        System.out.println(tsFile);
-        System.out.println(sfFile);
-        System.out.println(testFile);
+    public static void selfTrain (String seedFile, String stFile, String testFile) {
+        System.out.println("Train Seed Set Filename: " + seedFile);
+        System.out.println("Self Train Set Filename: " + stFile);
+        System.out.println("Test Set Filename: " + testFile);
+        // 0. load all
+        Treebank selftrainTB = new MemoryTreebank();
+        selftrainTB.loadPath(stFile);  
+
+        // 1. Train Seed Set
+        Options op = new Options();
+        op.doDep = false;
+        op.doPCFG = true;
+        op.setOptions("-goodPCFG", "-evals", "tsv");
+        Treebank seedTB = op.tlpParams.diskTreebank();
+        seedTB.loadPath(seedFile);  
+        LexicalizedParser lpc = LexicalizedParser.trainFromTreebank(seedTB, op);
+
+        // 2. Annotate Self Train Set
+        MemoryTreebank buffTB = new MemoryTreebank();
+        System.out.println("adding seedTB to buffTB...");
+        for (Tree treeInstance: seedTB) buffTB.add(treeInstance);
+        System.out.println("adding annotatedTree to buffTB..");
+        int count = 0;
+        for (Tree treeInstance : selftrainTB) {
+            Tree annotatedTree = lpc.apply(Sentence.toCoreLabelList(treeInstance.yieldWords()));
+            buffTB.add(annotatedTree);
+            if ((count) % 10 == 0) System.out.println(count);
+            count ++;
+        }
+
+        // 3. Retrain with both Seed Set and Self-Trained Set
+        System.out.println("Training self-train set..");
+        lpc = LexicalizedParser.trainFromTreebank(buffTB, op);
+
+        // 4. Test on Testing Set
+        Treebank testTB = op.tlpParams.diskTreebank();
+        testTB.loadPath(testFile);
+        EvaluateTreebank evaluator = new EvaluateTreebank (lpc);
+        evaluator.testOnTreebank(testTB);
         return ;
     }
 
