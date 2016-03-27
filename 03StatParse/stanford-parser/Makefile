@@ -22,7 +22,7 @@ prebrown:
 	done
 
 run:
-	java -cp "stanford-parser.jar:slf4j-api.jar:slf4j-simple.jar:stanford-parser-3.6.0-models.jar:" MyParser ../datasets/wsj_1000.mrg ../datasets/st_brown_1000.mrg ../datasets/test_brown.mrg
+	java -cp "stanford-parser.jar:slf4j-api.jar:slf4j-simple.jar:stanford-parser-3.6.0-models.jar:" MyParser ../datasets/wsj_1000.mrg ../datasets/st_empty.mrg ../datasets/test_wsj23.mrg
 
 clean: 
 	rm -rf *.class
