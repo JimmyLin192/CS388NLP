@@ -1,0 +1,277 @@
+universe = vanilla
+environment = CLASSPATH=/u/jimmylin/workspace/CS388NLP/03StatParse/stanford-parser/stanford-parser-3.6.0-models.jar:/u/jimmylin/workspace/CS388NLP/03StatParse/stanford-parser/stanford-parser.jar:/u/jimmylin/workspace/CS388NLP/03StatParse/stanford-parser/slf4j-api.jar:/u/jimmylin/workspace/CS388NLP/03StatParse/stanford-parser/slf4j-simple.jar:
+
+Initialdir = /u/jimmylin/workspace/CS388NLP/03StatParse/stanford-parser
+Executable = /usr/bin/java 
+
++Group   = "GRAD"
++Project = "INSTRUCTIONAL"
++ProjectDescription = "CS388 Homework 3"
+
+Log = ../traces/wbc1/1000.log
+
+Notification = complete
+Notify_user = jimmylin@utexas.edu
+
+Arguments = MyParser ../datasets/wsj_1000.mrg ../datasets/st_brown.mrg ../datasets/test_brown.mrg
+
+Output = ../traces/wbc1/1000.out
+Error  = ../traces/wbc1/1000.err
+Queue 1
+
+
+
+universe = vanilla
+environment = CLASSPATH=/u/jimmylin/workspace/CS388NLP/03StatParse/stanford-parser/stanford-parser-3.6.0-models.jar:/u/jimmylin/workspace/CS388NLP/03StatParse/stanford-parser/stanford-parser.jar:/u/jimmylin/workspace/CS388NLP/03StatParse/stanford-parser/slf4j-api.jar:/u/jimmylin/workspace/CS388NLP/03StatParse/stanford-parser/slf4j-simple.jar:
+
+Initialdir = /u/jimmylin/workspace/CS388NLP/03StatParse/stanford-parser
+Executable = /usr/bin/java 
+
++Group   = "GRAD"
++Project = "INSTRUCTIONAL"
++ProjectDescription = "CS388 Homework 3"
+
+Log = ../traces/wbc1/2000.log
+
+Notification = complete
+Notify_user = jimmylin@utexas.edu
+
+Arguments = MyParser ../datasets/wsj_2000.mrg ../datasets/st_brown.mrg ../datasets/test_brown.mrg
+
+Output = ../traces/wbc1/2000.out
+Error  = ../traces/wbc1/2000.err
+Queue 1
+
+
+
+universe = vanilla
+environment = CLASSPATH=/u/jimmylin/workspace/CS388NLP/03StatParse/stanford-parser/stanford-parser-3.6.0-models.jar:/u/jimmylin/workspace/CS388NLP/03StatParse/stanford-parser/stanford-parser.jar:/u/jimmylin/workspace/CS388NLP/03StatParse/stanford-parser/slf4j-api.jar:/u/jimmylin/workspace/CS388NLP/03StatParse/stanford-parser/slf4j-simple.jar:
+
+Initialdir = /u/jimmylin/workspace/CS388NLP/03StatParse/stanford-parser
+Executable = /usr/bin/java 
+
++Group   = "GRAD"
++Project = "INSTRUCTIONAL"
++ProjectDescription = "CS388 Homework 3"
+
+Log = ../traces/wbc1/3000.log
+
+Notification = complete
+Notify_user = jimmylin@utexas.edu
+
+Arguments = MyParser ../datasets/wsj_3000.mrg ../datasets/st_brown.mrg ../datasets/test_brown.mrg
+
+Output = ../traces/wbc1/3000.out
+Error  = ../traces/wbc1/3000.err
+Queue 1
+
+
+
+
+universe = vanilla
+environment = CLASSPATH=/u/jimmylin/workspace/CS388NLP/03StatParse/stanford-parser/stanford-parser-3.6.0-models.jar:/u/jimmylin/workspace/CS388NLP/03StatParse/stanford-parser/stanford-parser.jar:/u/jimmylin/workspace/CS388NLP/03StatParse/stanford-parser/slf4j-api.jar:/u/jimmylin/workspace/CS388NLP/03StatParse/stanford-parser/slf4j-simple.jar:
+
+Initialdir = /u/jimmylin/workspace/CS388NLP/03StatParse/stanford-parser
+Executable = /usr/bin/java 
+
++Group   = "GRAD"
++Project = "INSTRUCTIONAL"
++ProjectDescription = "CS388 Homework 3"
+
+Log = ../traces/wbc1/4000.log
+
+Notification = complete
+Notify_user = jimmylin@utexas.edu
+
+Arguments = MyParser ../datasets/wsj_4000.mrg ../datasets/st_brown.mrg ../datasets/test_brown.mrg
+
+Output = ../traces/wbc1/4000.out
+Error  = ../traces/wbc1/4000.err
+Queue 1
+
+
+
+universe = vanilla
+environment = CLASSPATH=/u/jimmylin/workspace/CS388NLP/03StatParse/stanford-parser/stanford-parser-3.6.0-models.jar:/u/jimmylin/workspace/CS388NLP/03StatParse/stanford-parser/stanford-parser.jar:/u/jimmylin/workspace/CS388NLP/03StatParse/stanford-parser/slf4j-api.jar:/u/jimmylin/workspace/CS388NLP/03StatParse/stanford-parser/slf4j-simple.jar:
+
+Initialdir = /u/jimmylin/workspace/CS388NLP/03StatParse/stanford-parser
+Executable = /usr/bin/java 
+
++Group   = "GRAD"
++Project = "INSTRUCTIONAL"
++ProjectDescription = "CS388 Homework 3"
+
+Log = ../traces/wbc1/5000.log
+
+Notification = complete
+Notify_user = jimmylin@utexas.edu
+
+Arguments = MyParser ../datasets/wsj_5000.mrg ../datasets/st_brown.mrg ../datasets/test_brown.mrg
+
+Output = ../traces/wbc1/5000.out
+Error  = ../traces/wbc1/5000.err
+Queue 1
+
+
+
+universe = vanilla
+environment = CLASSPATH=/u/jimmylin/workspace/CS388NLP/03StatParse/stanford-parser/stanford-parser-3.6.0-models.jar:/u/jimmylin/workspace/CS388NLP/03StatParse/stanford-parser/stanford-parser.jar:/u/jimmylin/workspace/CS388NLP/03StatParse/stanford-parser/slf4j-api.jar:/u/jimmylin/workspace/CS388NLP/03StatParse/stanford-parser/slf4j-simple.jar:
+
+Initialdir = /u/jimmylin/workspace/CS388NLP/03StatParse/stanford-parser
+Executable = /usr/bin/java 
+
++Group   = "GRAD"
++Project = "INSTRUCTIONAL"
++ProjectDescription = "CS388 Homework 3"
+
+Log = ../traces/wbc1/7000.log
+
+Notification = complete
+Notify_user = jimmylin@utexas.edu
+
+Arguments = MyParser ../datasets/wsj_7000.mrg ../datasets/st_brown.mrg ../datasets/test_brown.mrg
+
+Output = ../traces/wbc1/7000.out
+Error  = ../traces/wbc1/7000.err
+Queue 1
+
+
+
+universe = vanilla
+environment = CLASSPATH=/u/jimmylin/workspace/CS388NLP/03StatParse/stanford-parser/stanford-parser-3.6.0-models.jar:/u/jimmylin/workspace/CS388NLP/03StatParse/stanford-parser/stanford-parser.jar:/u/jimmylin/workspace/CS388NLP/03StatParse/stanford-parser/slf4j-api.jar:/u/jimmylin/workspace/CS388NLP/03StatParse/stanford-parser/slf4j-simple.jar:
+
+Initialdir = /u/jimmylin/workspace/CS388NLP/03StatParse/stanford-parser
+Executable = /usr/bin/java 
+
++Group   = "GRAD"
++Project = "INSTRUCTIONAL"
++ProjectDescription = "CS388 Homework 3"
+
+Log = ../traces/wbc1/13000.log
+
+Notification = complete
+Notify_user = jimmylin@utexas.edu
+
+Arguments = MyParser ../datasets/wsj_13000.mrg ../datasets/st_brown.mrg ../datasets/test_brown.mrg
+
+Output = ../traces/wbc1/13000.out
+Error  = ../traces/wbc1/13000.err
+Queue 1
+
+
+
+universe = vanilla
+environment = CLASSPATH=/u/jimmylin/workspace/CS388NLP/03StatParse/stanford-parser/stanford-parser-3.6.0-models.jar:/u/jimmylin/workspace/CS388NLP/03StatParse/stanford-parser/stanford-parser.jar:/u/jimmylin/workspace/CS388NLP/03StatParse/stanford-parser/slf4j-api.jar:/u/jimmylin/workspace/CS388NLP/03StatParse/stanford-parser/slf4j-simple.jar:
+
+Initialdir = /u/jimmylin/workspace/CS388NLP/03StatParse/stanford-parser
+Executable = /usr/bin/java 
+
++Group   = "GRAD"
++Project = "INSTRUCTIONAL"
++ProjectDescription = "CS388 Homework 3"
+
+Log = ../traces/wbc1/16000.log
+
+Notification = complete
+Notify_user = jimmylin@utexas.edu
+
+Arguments = MyParser ../datasets/wsj_16000.mrg ../datasets/st_brown.mrg ../datasets/test_brown.mrg
+
+Output = ../traces/wbc1/16000.out
+Error  = ../traces/wbc1/16000.err
+Queue 1
+
+
+
+universe = vanilla
+environment = CLASSPATH=/u/jimmylin/workspace/CS388NLP/03StatParse/stanford-parser/stanford-parser-3.6.0-models.jar:/u/jimmylin/workspace/CS388NLP/03StatParse/stanford-parser/stanford-parser.jar:/u/jimmylin/workspace/CS388NLP/03StatParse/stanford-parser/slf4j-api.jar:/u/jimmylin/workspace/CS388NLP/03StatParse/stanford-parser/slf4j-simple.jar:
+
+Initialdir = /u/jimmylin/workspace/CS388NLP/03StatParse/stanford-parser
+Executable = /usr/bin/java 
+
++Group   = "GRAD"
++Project = "INSTRUCTIONAL"
++ProjectDescription = "CS388 Homework 3"
+
+Log = ../traces/wbc1/20000.log
+
+Notification = complete
+Notify_user = jimmylin@utexas.edu
+
+Arguments = MyParser ../datasets/wsj_20000.mrg ../datasets/st_brown.mrg ../datasets/test_brown.mrg
+
+Output = ../traces/wbc1/20000.out
+Error  = ../traces/wbc1/20000.err
+Queue 1
+
+
+
+universe = vanilla
+environment = CLASSPATH=/u/jimmylin/workspace/CS388NLP/03StatParse/stanford-parser/stanford-parser-3.6.0-models.jar:/u/jimmylin/workspace/CS388NLP/03StatParse/stanford-parser/stanford-parser.jar:/u/jimmylin/workspace/CS388NLP/03StatParse/stanford-parser/slf4j-api.jar:/u/jimmylin/workspace/CS388NLP/03StatParse/stanford-parser/slf4j-simple.jar:
+
+Initialdir = /u/jimmylin/workspace/CS388NLP/03StatParse/stanford-parser
+Executable = /usr/bin/java 
+
++Group   = "GRAD"
++Project = "INSTRUCTIONAL"
++ProjectDescription = "CS388 Homework 3"
+
+Log = ../traces/wbc1/25000.log
+
+Notification = complete
+Notify_user = jimmylin@utexas.edu
+
+Arguments = MyParser ../datasets/wsj_25000.mrg ../datasets/st_brown.mrg ../datasets/test_brown.mrg
+
+Output = ../traces/wbc1/25000.out
+Error  = ../traces/wbc1/25000.err
+Queue 1
+
+
+
+universe = vanilla
+environment = CLASSPATH=/u/jimmylin/workspace/CS388NLP/03StatParse/stanford-parser/stanford-parser-3.6.0-models.jar:/u/jimmylin/workspace/CS388NLP/03StatParse/stanford-parser/stanford-parser.jar:/u/jimmylin/workspace/CS388NLP/03StatParse/stanford-parser/slf4j-api.jar:/u/jimmylin/workspace/CS388NLP/03StatParse/stanford-parser/slf4j-simple.jar:
+
+Initialdir = /u/jimmylin/workspace/CS388NLP/03StatParse/stanford-parser
+Executable = /usr/bin/java 
+
++Group   = "GRAD"
++Project = "INSTRUCTIONAL"
++ProjectDescription = "CS388 Homework 3"
+
+Log = ../traces/wbc1/30000.log
+
+Notification = complete
+Notify_user = jimmylin@utexas.edu
+
+Arguments = MyParser ../datasets/wsj_30000.mrg ../datasets/st_brown.mrg ../datasets/test_brown.mrg
+
+Output = ../traces/wbc1/30000.out
+Error  = ../traces/wbc1/30000.err
+Queue 1
+
+
+
+universe = vanilla
+environment = CLASSPATH=/u/jimmylin/workspace/CS388NLP/03StatParse/stanford-parser/stanford-parser-3.6.0-models.jar:/u/jimmylin/workspace/CS388NLP/03StatParse/stanford-parser/stanford-parser.jar:/u/jimmylin/workspace/CS388NLP/03StatParse/stanford-parser/slf4j-api.jar:/u/jimmylin/workspace/CS388NLP/03StatParse/stanford-parser/slf4j-simple.jar:
+
+Initialdir = /u/jimmylin/workspace/CS388NLP/03StatParse/stanford-parser
+Executable = /usr/bin/java 
+
++Group   = "GRAD"
++Project = "INSTRUCTIONAL"
++ProjectDescription = "CS388 Homework 3"
+
+Log = ../traces/wbc1/35000.log
+
+Notification = complete
+Notify_user = jimmylin@utexas.edu
+
+Arguments = MyParser ../datasets/wsj_35000.mrg ../datasets/st_brown.mrg ../datasets/test_brown.mrg
+
+Output = ../traces/wbc1/35000.out
+Error  = ../traces/wbc1/35000.err
+Queue 1
+
+
+
