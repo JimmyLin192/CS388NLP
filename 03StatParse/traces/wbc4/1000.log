@@ -1,0 +1,71 @@
+000 (285.000.000) 03/27 03:14:37 Job submitted from host: <128.83.130.140:49830>
+...
+009 (285.000.000) 03/27 03:14:43 Job was aborted by the user.
+	via condor_rm (by user jimmylin)
+...
+000 (334.000.000) 03/27 03:14:55 Job submitted from host: <128.83.130.140:49830>
+...
+001 (334.000.000) 03/27 03:15:13 Job executing on host: <128.83.144.155:33054>
+...
+006 (334.000.000) 03/27 03:15:22 Image size of job updated: 29538424
+	524  -  MemoryUsage of job (MB)
+	535892  -  ResidentSetSize of job (KB)
+...
+006 (334.000.000) 03/27 03:20:31 Image size of job updated: 29538424
+	3580  -  MemoryUsage of job (MB)
+	3665700  -  ResidentSetSize of job (KB)
+...
+010 (334.000.000) 03/27 03:20:47 Job was suspended.
+	Number of processes actually suspended: 1
+...
+006 (334.000.000) 03/27 03:20:47 Image size of job updated: 29538424
+	3634  -  MemoryUsage of job (MB)
+	3721064  -  ResidentSetSize of job (KB)
+...
+011 (334.000.000) 03/27 03:21:55 Job was unsuspended.
+...
+006 (334.000.000) 03/27 03:25:23 Image size of job updated: 29538424
+	5318  -  MemoryUsage of job (MB)
+	5445588  -  ResidentSetSize of job (KB)
+...
+010 (334.000.000) 03/27 03:26:03 Job was suspended.
+	Number of processes actually suspended: 1
+...
+006 (334.000.000) 03/27 03:26:03 Image size of job updated: 29538424
+	5433  -  MemoryUsage of job (MB)
+	5562388  -  ResidentSetSize of job (KB)
+...
+011 (334.000.000) 03/27 03:27:16 Job was unsuspended.
+...
+006 (334.000.000) 03/27 03:30:24 Image size of job updated: 29538424
+	5722  -  MemoryUsage of job (MB)
+	5858628  -  ResidentSetSize of job (KB)
+...
+006 (334.000.000) 03/27 03:35:24 Image size of job updated: 29538424
+	6271  -  MemoryUsage of job (MB)
+	6420640  -  ResidentSetSize of job (KB)
+...
+006 (334.000.000) 03/27 03:40:25 Image size of job updated: 29538424
+	8301  -  MemoryUsage of job (MB)
+	8499952  -  ResidentSetSize of job (KB)
+...
+006 (334.000.000) 03/27 03:45:25 Image size of job updated: 29538424
+	8310  -  MemoryUsage of job (MB)
+	8508908  -  ResidentSetSize of job (KB)
+...
+005 (334.000.000) 03/27 03:47:58 Job terminated.
+	(1) Normal termination (return value 0)
+		Usr 0 00:13:59, Sys 0 00:00:26  -  Run Remote Usage
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Run Local Usage
+		Usr 0 00:13:59, Sys 0 00:00:26  -  Total Remote Usage
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Total Local Usage
+	0  -  Run Bytes Sent By Job
+	0  -  Run Bytes Received By Job
+	0  -  Total Bytes Sent By Job
+	0  -  Total Bytes Received By Job
+	Partitionable Resources :    Usage  Request Allocated
+	   Cpus                 :                 1         1
+	   Disk (KB)            :       10       10   8863362
+	   Gpus                 :                           0
+	   Memory (MB)          :     8310        1      4028
+...

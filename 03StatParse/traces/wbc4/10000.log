@@ -1,0 +1,73 @@
+000 (291.000.000) 03/27 03:14:37 Job submitted from host: <128.83.130.140:49830>
+...
+009 (291.000.000) 03/27 03:14:43 Job was aborted by the user.
+	via condor_rm (by user jimmylin)
+...
+000 (340.000.000) 03/27 03:14:55 Job submitted from host: <128.83.130.140:49830>
+...
+001 (340.000.000) 03/27 03:15:15 Job executing on host: <128.83.144.155:33054>
+...
+006 (340.000.000) 03/27 03:15:24 Image size of job updated: 29536776
+	544  -  MemoryUsage of job (MB)
+	556764  -  ResidentSetSize of job (KB)
+...
+006 (340.000.000) 03/27 03:20:30 Image size of job updated: 29536776
+	3976  -  MemoryUsage of job (MB)
+	4070912  -  ResidentSetSize of job (KB)
+...
+010 (340.000.000) 03/27 03:20:47 Job was suspended.
+	Number of processes actually suspended: 1
+...
+006 (340.000.000) 03/27 03:20:47 Image size of job updated: 29536776
+	4218  -  MemoryUsage of job (MB)
+	4319032  -  ResidentSetSize of job (KB)
+...
+011 (340.000.000) 03/27 03:30:32 Job was unsuspended.
+...
+004 (340.000.000) 03/27 03:30:34 Job was evicted.
+	(0) Job was not checkpointed.
+		Usr 0 00:01:46, Sys 0 00:00:09  -  Run Remote Usage
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Run Local Usage
+	0  -  Run Bytes Sent By Job
+	0  -  Run Bytes Received By Job
+	Partitionable Resources :    Usage  Request Allocated
+	   Cpus                 :                 1         1
+	   Disk (KB)            :       10       10   8863362
+	   Gpus                 :                           0
+	   Memory (MB)          :     4218        1      4028
+...
+001 (340.000.000) 03/27 03:31:51 Job executing on host: <128.83.139.15:33793>
+...
+006 (340.000.000) 03/27 03:32:00 Image size of job updated: 37384388
+	4395  -  MemoryUsage of job (MB)
+	4500000  -  ResidentSetSize of job (KB)
+...
+006 (340.000.000) 03/27 03:37:01 Image size of job updated: 37384388
+	10364  -  MemoryUsage of job (MB)
+	10611860  -  ResidentSetSize of job (KB)
+...
+006 (340.000.000) 03/27 03:42:02 Image size of job updated: 37384388
+	10379  -  MemoryUsage of job (MB)
+	10627284  -  ResidentSetSize of job (KB)
+...
+010 (340.000.000) 03/27 03:51:30 Job was suspended.
+	Number of processes actually suspended: 1
+...
+011 (340.000.000) 03/27 03:52:14 Job was unsuspended.
+...
+005 (340.000.000) 03/27 04:30:36 Job terminated.
+	(1) Normal termination (return value 0)
+		Usr 0 00:59:12, Sys 0 00:00:29  -  Run Remote Usage
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Run Local Usage
+		Usr 0 00:59:12, Sys 0 00:00:29  -  Total Remote Usage
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Total Local Usage
+	0  -  Run Bytes Sent By Job
+	0  -  Run Bytes Received By Job
+	0  -  Total Bytes Sent By Job
+	0  -  Total Bytes Received By Job
+	Partitionable Resources :    Usage  Request Allocated
+	   Cpus                 :                 1         1
+	   Disk (KB)            :       10       10   1702934
+	   Gpus                 :                           0
+	   Memory (MB)          :    10379     4395     12899
+...

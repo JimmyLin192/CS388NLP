@@ -1,0 +1,64 @@
+000 (293.000.000) 03/27 03:14:37 Job submitted from host: <128.83.130.140:49830>
+...
+009 (293.000.000) 03/27 03:14:43 Job was aborted by the user.
+	via condor_rm (by user jimmylin)
+...
+000 (342.000.000) 03/27 03:14:55 Job submitted from host: <128.83.130.140:49830>
+...
+001 (342.000.000) 03/27 03:15:15 Job executing on host: <128.83.144.155:33054>
+...
+006 (342.000.000) 03/27 03:15:24 Image size of job updated: 29536776
+	558  -  MemoryUsage of job (MB)
+	570656  -  ResidentSetSize of job (KB)
+...
+010 (342.000.000) 03/27 03:19:36 Job was suspended.
+	Number of processes actually suspended: 1
+...
+006 (342.000.000) 03/27 03:19:36 Image size of job updated: 29536776
+	3521  -  MemoryUsage of job (MB)
+	3605004  -  ResidentSetSize of job (KB)
+...
+011 (342.000.000) 03/27 03:29:03 Job was unsuspended.
+...
+004 (342.000.000) 03/27 03:29:08 Job was evicted.
+	(0) Job was not checkpointed.
+		Usr 0 00:01:33, Sys 0 00:00:04  -  Run Remote Usage
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Run Local Usage
+	0  -  Run Bytes Sent By Job
+	0  -  Run Bytes Received By Job
+	Partitionable Resources :    Usage  Request Allocated
+	   Cpus                 :                 1         1
+	   Disk (KB)            :       10       10   8863362
+	   Gpus                 :                           0
+	   Memory (MB)          :     3521        1      4028
+...
+001 (342.000.000) 03/27 03:31:47 Job executing on host: <128.83.144.42:53829>
+...
+006 (342.000.000) 03/27 03:31:55 Image size of job updated: 37035488
+	3663  -  MemoryUsage of job (MB)
+	3750000  -  ResidentSetSize of job (KB)
+...
+006 (342.000.000) 03/27 03:36:55 Image size of job updated: 37035488
+	8721  -  MemoryUsage of job (MB)
+	8929636  -  ResidentSetSize of job (KB)
+...
+006 (342.000.000) 03/27 03:41:56 Image size of job updated: 37035488
+	10365  -  MemoryUsage of job (MB)
+	10613224  -  ResidentSetSize of job (KB)
+...
+005 (342.000.000) 03/27 04:35:21 Job terminated.
+	(1) Normal termination (return value 0)
+		Usr 0 01:05:00, Sys 0 00:00:12  -  Run Remote Usage
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Run Local Usage
+		Usr 0 01:05:00, Sys 0 00:00:12  -  Total Remote Usage
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Total Local Usage
+	0  -  Run Bytes Sent By Job
+	0  -  Run Bytes Received By Job
+	0  -  Total Bytes Sent By Job
+	0  -  Total Bytes Received By Job
+	Partitionable Resources :    Usage  Request Allocated
+	   Cpus                 :                 1         1
+	   Disk (KB)            :       10       10   4689763
+	   Gpus                 :                           0
+	   Memory (MB)          :    10365     3663      4027
+...
